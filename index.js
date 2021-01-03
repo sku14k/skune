@@ -169,7 +169,7 @@ client.on('message', async message => {
                     text: "© 2020. 14K"
                 }
             }
-        })
+        }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
     }
 });
 
