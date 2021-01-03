@@ -93,6 +93,19 @@ client.on('message', async message => {
     if(command === 'weather') client.commands.get('weather').execute(client, message, args);
     if(command === 'hug') client.commands.get('hug').execute(client, message, args);
     if(command === 'userinfo') client.commands.get('userinfo').execute(client, message, args);
+
+    if(message.content === 'skuneprefix') {
+        message.reply({
+            embed: {
+                color: '#679ad8',
+                title: 'Комманд амжиллтай ажиллаа :white_check_mark:',
+                description: `\`\`\`Сервер дээрх бот комманд тэмдэг ${prefix} дээр тохирогдсон байна.\`\`\``,
+                footer: {
+                    text: "© 2020. 14K"
+                }
+            }
+        })
+    }
 });
 
 client.on("guildMemberAdd", (member) => {
