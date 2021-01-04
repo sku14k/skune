@@ -76,7 +76,7 @@ client.on('message', async message => {
           color: '#679ad8',
           description: `\`\`\`Сервер дээрх комманд тэмдэг ${prefix} дээр тохируулагдсан байна.\`\`\``,
           footer: {
-            text: "© 2020. 14K"
+            text: "© 2021. 14K"
           }
         }
       })
@@ -116,7 +116,7 @@ client.on('message', async message => {
                     },
                 ],
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         });
@@ -127,7 +127,7 @@ client.on('message', async message => {
                 .setAuthor("sku14k#1263 - Хөгжүүлэгч", "https://i.imgur.com/asbpULZ.jpg")
                 .setTitle('Сервер удирдах коммандууд :keyboard:')
                 .setDescription("Намайг сонгон хэрэглэж байгаа танд баярлалаа :hugging:")
-                .setFooter("© 2020. 14K")
+                .setFooter("© 2021. 14K")
                 .addFields(
                   {
                     name: 'Гишүүнд серверээс хориг тавих',
@@ -164,7 +164,7 @@ client.on('message', async message => {
                 .setAuthor("sku14k#1263 - Хөгжүүлэгч", "https://i.imgur.com/asbpULZ.jpg")
                 .setTitle('Сервер удирдах коммандууд :keyboard:')
                 .setDescription("Намайг сонгон хэрэглэж байгаа танд баярлалаа :hugging:")
-                .setFooter("© 2020. 14K")
+                .setFooter("© 2021. 14K")
                 .addFields(
                   {
                     name: 'Серверийн мэдээллийг харах',
@@ -211,7 +211,7 @@ client.on('message', async message => {
             .setAuthor("sku14k#1263 - Хөгжүүлэгч", "https://i.imgur.com/asbpULZ.jpg")
             .setTitle('Дууны коммандууд 🎵')
             .setDescription("Намайг сонгон хэрэглэж байгаа танд баярлалаа :hugging:")
-            .setFooter("© 2020. 14K")
+            .setFooter("© 2021. 14K")
             .addFields(
               {
                 name: 'Дуу тоглуулах',
@@ -252,7 +252,7 @@ client.on('message', async message => {
                 .setAuthor("sku14k#1263 - Хөгжүүлэгч", "https://i.imgur.com/asbpULZ.jpg")
                 .setTitle('Дууны коммандууд 🎵')
                 .setDescription("Намайг сонгон хэрэглэж байгаа танд баярлалаа :hugging:")
-                .setFooter("© 2020. 14K")
+                .setFooter("© 2021. 14K")
                 .addFields(
                   {
                     name: 'АФК болох',
@@ -303,7 +303,7 @@ client.on('message', async message => {
               .setAuthor("sku14k#1263 - Хөгжүүлэгч", "https://i.imgur.com/asbpULZ.jpg")
               .setTitle('Нэмэлт коммандууд ➕')
               .setDescription("Намайг сонгон хэрэглэж байгаа танд баярлалаа :hugging:")
-              .setFooter("© 2020. 14K")
+              .setFooter("© 2021. 14K")
               .addFields(
                 {
                   name: 'Өөрийн эсвэл гишүүний хөрөг зургийг харах',
@@ -351,7 +351,7 @@ client.on("guildCreate", async guild => {
               { name: 'Дэлгэрэнгүй', value: 'Бусад дэлгэрэнгүй мэдээллийг https://skunebot.com/ -оос авна уу.'},
           )
           .setColor("#679ad8")
-          .setFooter("© 2020. 14K");
+          .setFooter("© 2021. 14K");
         return channel.send(embed);
       }
   })
@@ -375,7 +375,7 @@ client.on("guildMemberAdd", (member) => {
               value: `\`\`\`${datestring}\`\`\``,
           }
       )
-      .setFooter("© 2020. 14K")
+      .setFooter("© 2021. 14K")
       .setAuthor(`Тавтай морил, ${member.user.username}`, client.user.displayAvatarURL())
       .setThumbnail(member.user.displayAvatarURL())
       
@@ -406,7 +406,7 @@ client.on("guildMemberRemove", (member) => {
               value: `\`\`\`${member.roles.cache.size - 1 ? member.roles.cache.map(e => e.name).filter(x => x !== "@everyone").join(", ") : 'Байхгүй'}\`\`\``,
           }
       )
-      .setFooter("© 2020. 14K")
+      .setFooter("© 2021. 14K")
       
   client.channels.cache.get(chx).send(wembed);
 });
