@@ -11,9 +11,7 @@ for(const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-client.once('ready', () => {
-    console.log('skune бот аслаа.');
-});
+require('./util/eventHandler')(client);
 
 client.on('message', async message => {
     let prefix;
@@ -36,7 +34,7 @@ client.on('message', async message => {
             color: '#FFFF00',
             description: `\`\`\`Таны бичсэн комманд үсгийн алдаатай эсвэл олдоогүй тул та ${prefix}help гэж бичсэнээр тусламж авах боломжтой.\`\`\``,
             footer: {
-                text: "© 2020. 14K",
+                text: "© 2021. 14K",
             },
         },
     });
@@ -50,7 +48,7 @@ client.on('message', async message => {
                 color: '#FF0000',
                 description: `\`\`\`Та комманд тэмдэгээ буруу бичсэн эсвэл тухайн ажиллуулах гэсэн комманд байгаагүй тул гэнэтийн алдаа гарлаа`,
                 footer: {
-                    text: "© 2020. 14K",
+                    text: "© 2021. 14K",
                 },
             },
         });
