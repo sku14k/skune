@@ -19,7 +19,7 @@ module.exports = {
                 color: "#FF0000",
                 description: `\`\`\`Танд энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -29,7 +29,7 @@ module.exports = {
                 color: "#FF0000",
                 description: `\`\`\`Надад энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -46,7 +46,7 @@ module.exports = {
                     },
                 ],
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
@@ -57,7 +57,7 @@ module.exports = {
                 title: 'Алдаа гарлаа :x:',
                 description: `\`\`\`Устгах мессежийн мөрийн хэмжээ бодит тоо байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -68,7 +68,7 @@ module.exports = {
                 title: 'Алдаа гарлаа :x:',
                 description: `\`\`\`Устгах мессежийн мөрийн хэмжээ зуугаас их байсан тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -79,7 +79,7 @@ module.exports = {
                 title: 'Алдаа гарлаа :x:',
                 description: `\`\`\`Устгах мессежийн мөрийн хэмжээ нэгээс бага байсан тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -92,7 +92,7 @@ module.exports = {
                     title: 'Комманд амжилттай ажиллаа :white_check_mark:',
                     description: `\`\`\`${messages.size - 1} мөр мессеж амжилттай усгадлаа.\`\`\``,
                     footer: {
-                        text: "© 2020. 14K"
+                        text: "© 2021. 14K"
                     }
                 }
             }).then(m => m.delete({timeout: 15000}));

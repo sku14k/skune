@@ -25,7 +25,7 @@ module.exports = {
                 title: 'Алдаа гарлаа :x:',
                 description: `\`\`\`Танд энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -36,7 +36,7 @@ module.exports = {
                 title: 'Алдаа гарлаа :x:',
                 description: `\`\`\`Надад энэ коммандыг ажиллуулх эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -59,7 +59,7 @@ module.exports = {
                     }
                 ],
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
@@ -80,7 +80,7 @@ module.exports = {
                     }
                 ],
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
@@ -94,7 +94,7 @@ module.exports = {
                         title: 'Зарлал :grey_exclamation:',
                         description: `\`\`\`Ус балгасан гэсэн ажил үүрэг олдоогүй тул шинээр үүсгэж байна.\`\`\``,
                         footer: {
-                            text: "© 2020. 14K"
+                            text: "© 2021. 14K"
                         }
                     }
                 }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
@@ -117,7 +117,7 @@ module.exports = {
                         title: 'Зарлал :grey_exclamation:',
                         description: `\`\`\`Ус балгасан гэсэн ажил үүрэг амжилттай шинээр үүсгэлээ.\`\`\``,
                         footer: {
-                            text: "© 2020. 14K"
+                            text: "© 2021. 14K"
                         }
                     }
                 }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
@@ -133,7 +133,7 @@ module.exports = {
                 title: 'Алдаа гарлаа :x:',
                 description: `\`\`\`${Member.displayName} гишүүн аль хэдийнээ ус балгасан байна.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -145,7 +145,7 @@ module.exports = {
                 title: 'Комманд амжилттай ажиллаа :white_check_mark:',
                 description: `\`\`\`${Member.displayName} гишүүнийг амжилттай ус балгууллаа.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -158,7 +158,7 @@ module.exports = {
                     title: 'Комманд амжилттай ажиллаа :white_check_mark:',
                     description: `\`\`\`${Member.displayName} гишүүн амжилттай амандах усаа асгалаа.\`\`\``,
                     footer: {
-                        text: "© 2020. 14K"
+                        text: "© 2021. 14K"
                     }
                 }
             }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));

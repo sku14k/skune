@@ -10,14 +10,14 @@ module.exports = {
             embed.setTitle("Таны хөрөг зураг 🖌")
             embed.setImage(message.author.displayAvatarURL())
             embed.setColor("#679ad8")
-            embed.setFooter("© 2020. 14K")
+            embed.setFooter("© 2021. 14K")
             return message.channel.send(embed)
         }else{
             const user = message.mentions.users.first()
             embed.setTitle(`${user.tag} гишүүний хөрөг зураг 🖌`)
             embed.setImage(user.displayAvatarURL())
             embed.setColor('#679ad8')
-            embed.setFooter("© 2020. 14K")
+            embed.setFooter("© 2021. 14K")
             return message.channel.send(embed)
         }
     }

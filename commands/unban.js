@@ -21,7 +21,7 @@ module.exports = {
                 title: 'Алдаа гарлаа :x:',
                 description: `\`\`\`Танд энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -32,7 +32,7 @@ module.exports = {
                 title: 'Алдаа гарлаа :x:',
                 description: `\`\`\`Надад энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -54,7 +54,7 @@ module.exports = {
                     },
                 ],
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
@@ -66,7 +66,7 @@ module.exports = {
                     title: 'Анхааруулга :exclamation:',
                     description: `\`\`\`Серверээс хориг тавьсан хүн олдоогүй тул комманд ажиллаж чадсангүй.\`\`\``,
                     footer: {
-                        text: "© 2020. 14K"
+                        text: "© 2021. 14K"
                     }
                 }
             }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -79,7 +79,7 @@ module.exports = {
                             title: 'Комманд амжилттай ажиллаа :white_check_mark:',
                             description: `\`\`\`${u.user.username} гишүүний серверээс тавьсан хоригийг амжилттай аргалаа.\`\`\``,
                             footer: {
-                                text: "© 2020. 14K"
+                                text: "© 2021. 14K"
                             }
                         }
                     }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -91,7 +91,7 @@ module.exports = {
                             title: 'Комманд амжилттай ажиллаа :white_check_mark:',
                             description: `\`\`\`${u.user.username} гишүүний серверээс тавьсан АИДИ хоригийг амжилттай аргалаа.\`\`\``,
                             footer: {
-                                text: "© 2020. 14K"
+                                text: "© 2021. 14K"
                             }
                         }
                     }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -103,7 +103,7 @@ module.exports = {
                             title: 'Алдаа гарлаа :x:',
                             description: `\`\`\`${u.user.username} гишүүнд серверээс хориг тавиагүй байсан тул комманд ажиллаж чадсангүй.\`\`\``,
                             footer: {
-                                text: "© 2020. 14K"
+                                text: "© 2021. 14K"
                             }
                         }
                     }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));

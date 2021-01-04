@@ -29,7 +29,7 @@ module.exports = {
                     },
                 ],
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
@@ -40,7 +40,7 @@ module.exports = {
                 title: 'Алдаа гарлаа :x:',
                 description: `\`\`\`Таны дурдсан хот олдсонгүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));

@@ -47,7 +47,7 @@ module.exports = {
                     },
                 ],
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         });
@@ -58,7 +58,7 @@ module.exports = {
                 .setAuthor("sku14k#1263 - Хөгжүүлэгч", "https://i.imgur.com/asbpULZ.jpg")
                 .setTitle('Сервер удирдах коммандууд :keyboard:')
                 .setDescription("Намайг сонгон хэрэглэж байгаа танд баярлалаа :hugging:")
-                .setFooter("© 2020. 14K")
+                .setFooter("© 2021. 14K")
                 .addFields(
                   {
                     name: 'Гишүүнд серверээс хориг тавих',
@@ -95,7 +95,7 @@ module.exports = {
                 .setAuthor("sku14k#1263 - Хөгжүүлэгч", "https://i.imgur.com/asbpULZ.jpg")
                 .setTitle('Сервер удирдах коммандууд :keyboard:')
                 .setDescription("Намайг сонгон хэрэглэж байгаа танд баярлалаа :hugging:")
-                .setFooter("© 2020. 14K")
+                .setFooter("© 2021. 14K")
                 .addFields(
                   {
                     name: 'Серверийн мэдээллийг харах',
@@ -142,7 +142,7 @@ module.exports = {
             .setAuthor("sku14k#1263 - Хөгжүүлэгч", "https://i.imgur.com/asbpULZ.jpg")
             .setTitle('Дууны коммандууд 🎵')
             .setDescription("Намайг сонгон хэрэглэж байгаа танд баярлалаа :hugging:")
-            .setFooter("© 2020. 14K")
+            .setFooter("© 2021. 14K")
             .addFields(
               {
                 name: 'Дуу тоглуулах',
@@ -183,7 +183,7 @@ module.exports = {
                 .setAuthor("sku14k#1263 - Хөгжүүлэгч", "https://i.imgur.com/asbpULZ.jpg")
                 .setTitle('Дууны коммандууд 🎵')
                 .setDescription("Намайг сонгон хэрэглэж байгаа танд баярлалаа :hugging:")
-                .setFooter("© 2020. 14K")
+                .setFooter("© 2021. 14K")
                 .addFields(
                   {
                     name: 'АФК болох',
@@ -234,7 +234,7 @@ module.exports = {
               .setAuthor("sku14k#1263 - Хөгжүүлэгч", "https://i.imgur.com/asbpULZ.jpg")
               .setTitle('Нэмэлт коммандууд ➕')
               .setDescription("Намайг сонгон хэрэглэж байгаа танд баярлалаа :hugging:")
-              .setFooter("© 2020. 14K")
+              .setFooter("© 2021. 14K")
               .addFields(
                 {
                   name: 'Өөрийн эсвэл гишүүний хөрөг зургийг харах',

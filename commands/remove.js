@@ -21,7 +21,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Серверт дуу тоглуулаагүй байгаа тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-              text: "© 2020. 14K"
+              text: "© 2021. 14K"
           }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -31,7 +31,7 @@ module.exports = {
 				color: "#FFFF00",
 				description: `\`\`\`Комманд ажиллуулах зөвлөгөө: ${prefix}remove [Дараалалд байгаа дууны дугаар]. гэж дараалалд байгаа дууг дарааллаас гаргана.\`\`\``,
 				footer: {
-					text: "© 2020. 14K"
+					text: "© 2021. 14K"
 				}
 			}
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -41,7 +41,7 @@ module.exports = {
 				color: "#FFFF00",
 				description: `\`\`\`Комманд ажиллуулах зөвлөгөө: ${prefix}remove [Дараалалд байгаа дууны дугаар]. гэж дараалалд байгаа дууг дарааллаас хасна.\`\`\``,
 				footer: {
-					text: "© 2020. 14K"
+					text: "© 2021. 14K"
 				}
 			}
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -51,7 +51,7 @@ module.exports = {
 				color: "#FF0000",
 				description: `\`\`\`Дараалалд нэгээс өөр дуу байхгүй тул дараалалаас дуу хасах комманд ажиллаж чадсангүй.\`\`\``,
 				footer: {
-					text: "© 2020. 14K"
+					text: "© 2021. 14K"
 				}
 			}
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -62,7 +62,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Дараалалд байгаа дуунуудын дугаар таараагүй тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-            text: "© 2020. 14K"
+            text: "© 2021. 14K"
           }
         }
       }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -74,7 +74,7 @@ try{
         color: "#679ad8",
         description: `\`\`\`${song[0].title} дууг дарааллаас амжилттай хаслаа.\`\`\``,
         footer: {
-          text: "© 2020. 14K"
+          text: "© 2021. 14K"
         }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -84,7 +84,7 @@ try{
               color: "#FF0000",
               description: `\`\`\`Гэнэтийн алдаа гарлаа.\`\`\``,
               footer: {
-                  text: "© 2020. 14K"
+                  text: "© 2021. 14K"
               }
           }
         }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));

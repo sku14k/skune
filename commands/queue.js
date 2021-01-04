@@ -14,7 +14,7 @@ module.exports = {
             color: "#679ad8",
             description: `\`\`\`Надад энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
             footer: {
-                text: "© 2020. 14K"
+                text: "© 2021. 14K"
             }
         }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -25,7 +25,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Серверт дуу тоглуулаагүй байгаа тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-              text: "© 2020. 14K"
+              text: "© 2021. 14K"
           }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));

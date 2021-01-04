@@ -17,7 +17,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Та дуут сувагт холбогдоогүй тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-              text: "© 2020. 14K"
+              text: "© 2021. 14K"
           }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -29,7 +29,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Надад дуут сувагт холбогдох эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-              text: "© 2020. 14K"
+              text: "© 2021. 14K"
           }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -39,7 +39,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Надад дуут сувагт дуугарах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-              text: "© 2020. 14K"
+              text: "© 2021. 14K"
           }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -51,7 +51,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Тоглуулах дуугаа дурдаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-              text: "© 2020. 14K"
+              text: "© 2021. 14K"
           }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -69,7 +69,7 @@ module.exports = {
                 color: "#FF0000",
                 description: `\`\`\`Таны дурдсан дуу Ютүйбээс олдоогүй тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
           }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -98,7 +98,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Таны дурдсан дууг Ютүйбээс олдоогүй тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-              text: "© 2020. 14K"
+              text: "© 2021. 14K"
           }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -168,7 +168,7 @@ module.exports = {
               color: "#679ad8",
               description: `\`\`\`Дараалалд байсан бүх дуунууд тоглогдож дууссан тул би гарлаа. Хэрвээ та намайг дуут сувагт 24/7 байлгамаар бол ${prefix}afk гэж бичээрэй.\`\`\``,
               footer: {
-                  text: "© 2020. 14K"
+                  text: "© 2021. 14K"
               }
           }
         }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -191,7 +191,7 @@ stream.on('error', function(er)  {
             color: "#FF0000",
             description: `\`\`\`Гэнэтийн алдаа гарлаа.\`\`\``,
             footer: {
-                text: "© 2020. 14K"
+                text: "© 2021. 14K"
             }
         }
       }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -236,7 +236,7 @@ stream.on('error', function(er)  {
             color: "#FF0000",
             description: `\`\`\`Би дуут сувагт холбогдож чадсангүй.\`\`\``,
             footer: {
-                text: "© 2020. 14K"
+                text: "© 2021. 14K"
             }
         }
       }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));

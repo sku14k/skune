@@ -30,7 +30,7 @@ module.exports = {
                         value: `\`\`\`${prefix}setwelcome [Текст Суваг] гэж бичсэнээр серверийн шинэ гишүүн угтаж авах текст суваг өөрчлөгдөнө.\`\`\``
                     }
                 )
-                .setFooter("© 2020. 14K");
+                .setFooter("© 2021. 14K");
             return message.reply(embed).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
         }
 
@@ -40,7 +40,7 @@ module.exports = {
             .setColor('#679ad8')
             .setTitle('Комманд амжилттай ажиллаа :smile:')
             .setDescription(`\`\`\`Серверийн шинэ гишүүн угтаж авах текст суваг амжилттай #${channel.name} болж өөрчлөгдлөө.\`\`\``)
-            .setFooter("© 2020. 14K");
+            .setFooter("© 2021. 14K");
         message.reply(embed).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
     }
 }

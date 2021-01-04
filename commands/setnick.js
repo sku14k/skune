@@ -11,7 +11,7 @@ module.exports = {
                 title: 'Алдаа гарлаа :x:',
                 description: `\`\`\`Танд энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -22,7 +22,7 @@ module.exports = {
                 title: 'Алдаа гарлаа :x:',
                 description: `\`\`\`Надад энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -40,7 +40,7 @@ module.exports = {
                         color: "#FF0000",
                         description: `\`\`\`Миний эрх гишүүний хочийг өөрчлөхөд хангалттай байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                         footer: {
-                            text: "© 2020. 14K"
+                            text: "© 2021. 14K"
                         }
                     }
                 }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -52,7 +52,7 @@ module.exports = {
                     title: 'Комманд амжилттай ажиллаа :white_check_mark:',
                     description: `\`\`\`${mentionedMember.user.tag} гишүүний хочийг амжилттай ${nickname} болгож өөрчиллөө.\`\`\``,
                     footer: {
-                        text: "© 2020. 14K"
+                        text: "© 2021. 14K"
                     }
                 }
                 }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -67,7 +67,7 @@ module.exports = {
                         title: 'Алдаа гарлаа :x:',
                         description: `\`\`\`Миний эрх гишүүний хочийг өөрчлөхөд хангалттай байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                         footer: {
-                            text: "© 2020. 14K"
+                            text: "© 2021. 14K"
                         }
                     }
                 }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -79,7 +79,7 @@ module.exports = {
                         title: 'Комманд амжилттай ажиллаа :white_check_mark:',
                         description: `\`\`\`${mentionedMember.user.tag} гишүүний хочийг амжилттай ${nickname} болгож өөрчиллөө.\`\`\``,
                         footer: {
-                            text: "© 2020. 14K"
+                            text: "© 2021. 14K"
                         }
                     }
                 }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -99,7 +99,7 @@ module.exports = {
                     color: "#FFFF00",
                     description: `\`\`\`Комманд ажиллуулах зөвлөгөө: ${prefix}setnick [Гишүүн] [Хоч] эсвэл ${prefix}setnick [Хоч] гэж бичсэнээр хоч өөрчлөгдөнө.\`\`\``,
                     footer: {
-                        text: "© 2020. 14K"
+                        text: "© 2021. 14K"
                     }
                 }
             }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));

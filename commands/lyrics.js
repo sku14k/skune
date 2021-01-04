@@ -14,7 +14,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Серверт дуу тоглуулаагүй байгаа тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-              text: "© 2020. 14K"
+              text: "© 2021. 14K"
           }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -28,7 +28,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`${queue.songs[0].title} дууны үг олдоогүй тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-            text: "© 2020. 14K"
+            text: "© 2021. 14K"
           }
         }
       }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -38,7 +38,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`${queue.songs[0].title} дууны үг олдоогүй тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-            text: "© 2020. 14K"
+            text: "© 2021. 14K"
           }
         }
       }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -51,7 +51,7 @@ module.exports = {
       .setThumbnail(queue.songs[0].img)
       .setColor("#679ad8")
       .setDescription(lyrics)
-      .setFooter("© 2020. 14K");
+      .setFooter("© 2021. 14K");
 
     if (lyricsEmbed.description.length >= 2048)
       lyricsEmbed.description = `${lyricsEmbed.description.substr(0, 2045)}...`;

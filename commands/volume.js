@@ -13,7 +13,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Та дуут сувагт холбогдоогүй тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-              text: "© 2020. 14K"
+              text: "© 2021. 14K"
           }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -24,7 +24,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Дуу тоглуулагдаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-              text: "© 2020. 14K"
+              text: "© 2021. 14K"
           }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -34,7 +34,7 @@ module.exports = {
         color: "#679ad8",
         description: `\`\`\`Одоо байгаа дуу тоглуулагчийн дууны түвшин: ${serverQueue.volume}\`\`\``,
         footer: {
-          text: "© 2020. 14K"
+          text: "© 2021. 14K"
         }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -44,7 +44,7 @@ module.exports = {
          color: "#FF0000",
          description: `\`\`\`Дуу тоглуулагчийн дууны түвшинг өөрчлөх түвшингийн тоог оруулаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
          footer: {
-          text: "© 2020. 14K"
+          text: "© 2021. 14K"
          }
         }
       }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -54,7 +54,7 @@ module.exports = {
         color: "#FF0000",
         description: `\`\`\`Дуу тоглуулагчийн дууны түвшинг өөрчлөх түвшингийн тоо 150с дээш эсвэл 0с доош байсан тул комманд.\`\`\``,
         footer: {
-          text: "© 2020. 14K"
+          text: "© 2021. 14K"
         }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -65,7 +65,7 @@ module.exports = {
     .setDescription(`\`\`\`Дууны хэмнэл: ${args[0]/1}/100 болж өөрчлөгдлөө\`\`\``)
     .setAuthor("Серверийн дуу тоглуулагчийн дууны түвшин", "https://raw.githubusercontent.com/SudhanPlayz/Discord-MusicBot/master/assets/Music.gif")
     .setColor("#679ad8")
-    .setFooter("© 2020. 14K")
+    .setFooter("© 2021. 14K")
     return message.channel.send(xd);
   },
 };

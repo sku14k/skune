@@ -32,7 +32,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Серверт дуу тоглуулаагүй байгаа тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-              text: "© 2020. 14K"
+              text: "© 2021. 14K"
           }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -43,7 +43,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Дараалалд байгаа дуунуудын дугаар таараагүй тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-            text: "© 2020. 14K"
+            text: "© 2021. 14K"
           }
         }
       }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -67,7 +67,7 @@ module.exports = {
               color: "#679ad8",
               description: `\`\`\`Дуу тоглуулагч зогсож, дараалалд байсан дуунууд цуцлагдлаа.\`\`\``,
               footer: {
-                  text: "© 2020. 14K"
+                  text: "© 2021. 14K"
               }
           }
         })
@@ -78,7 +78,7 @@ module.exports = {
                             color: "#679ad8",
                             description: `⏭ \`${args[0] - 1}\` дууг амжилттай алгаслаа.`,
                             footer: {
-                              text: "© 2020. 14K"
+                              text: "© 2021. 14K"
                             }
                         }
    

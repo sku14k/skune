@@ -21,7 +21,7 @@ module.exports = {
                 title: 'Алдаа гарлаа :x:',
                 description: `\`\`\`Танд энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -32,7 +32,7 @@ module.exports = {
                 title: 'Алдаа гарлаа :x:',
                 description: `\`\`\`Надад энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
         }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -57,7 +57,7 @@ module.exports = {
                 },
             )
             .setColor('#679ad8')
-            .setFooter("© 2020. 14K")
+            .setFooter("© 2021. 14K")
 
             if(!args[0]) return message.reply({
             embed: {
@@ -71,7 +71,7 @@ module.exports = {
                     },
                 ],
                 footer: {
-                    text: "© 2020. 14K"
+                    text: "© 2021. 14K"
                 }
             }
             }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
@@ -82,7 +82,7 @@ module.exports = {
                     title: 'Алдаа гарлаа :x:',
                     description: `\`\`\`Дурдсан хүн энэ серверт байгаагүй эсвэл та дурдаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
                     footer: {
-                        text: "© 2020. 14K"
+                        text: "© 2021. 14K"
                     }
                 }
             }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -101,7 +101,7 @@ module.exports = {
                         title: 'Комманд амжилттай ажиллаа :white_check_mark:',
                         description: `\`\`\`${mentionedMember.user.tag} гишүүнийг амжилттай серверээс гаргалаа.\`\`\``,
                         footer: {
-                            text: "© 2020. 14K"
+                            text: "© 2021. 14K"
                         }
                     }
                 }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
@@ -113,7 +113,7 @@ module.exports = {
                         title: 'Алдаа гарлаа :x:',
                         description: `\`\`\`${mentionedMember.user.tag} гишүүнийг серверээс гаргах явцад алдаа гарлаа.\`\`\``,
                         footer: {
-                            text: "© 2020. 14K"
+                            text: "© 2021. 14K"
                         }
                     }
                 }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));

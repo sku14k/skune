@@ -13,7 +13,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Та дуут сувагт холбогдоогүй тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-              text: "© 2020. 14K"
+              text: "© 2021. 14K"
           }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -24,7 +24,7 @@ module.exports = {
           color: "#FF0000",
           description: `\`\`\`Дараалалд дуу байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
           footer: {
-              text: "© 2020. 14K"
+              text: "© 2021. 14K"
           }
       }
     }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000}));
@@ -54,7 +54,7 @@ if(!serverQueue.connection.dispatcher)return
               color: "#679ad8",
               description: `\`\`\`Дуу тоглуулагч зогсож, дараалалд байсан дуунууд цуцлагдлаа.\`\`\``,
               footer: {
-                  text: "© 2020. 14K"
+                  text: "© 2021. 14K"
               }
           }
         })
@@ -64,7 +64,7 @@ if(!serverQueue.connection.dispatcher)return
         color: "#679ad8",
         description: `\`\`\`Тоглож байсан дууг амжилттай алгаслаа.\`\`\``,
         footer: {
-          text: "© 2020. 14K"
+          text: "© 2021. 14K"
         }
       }
     })
