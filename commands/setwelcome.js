@@ -14,6 +14,9 @@ module.exports = {
             prefix = prefixes;
         }
 
+        let welcome;
+        let welcomes = await db.fetch(`welchannel_${message.guild.id}`);
+
         let channel = message.mentions.channels.first();
 
         if(!channel) {
@@ -31,7 +34,7 @@ module.exports = {
             return message.reply(embed).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
         }
 
-        db.set(`welchannel_${message.guild.id}`, channel.id);
+        await db.set(`welchannel_${message.guild.id}`, channel.id);
 
         const embed = new Discord.MessageEmbed()
             .setColor('#679ad8')

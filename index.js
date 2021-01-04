@@ -158,6 +158,9 @@ client.on('message', async message => {
     } else {
         prefix = prefixes;
     }
+
+    let welcome;
+    let welcomes = await db.fetch(`welchannel_${message.guild.id}`);
     
     if(message.content === 'skuneprefix') {
         message.reply({
@@ -173,4 +176,4 @@ client.on('message', async message => {
     }
 });
 
-client.login(process.env.token);
+client.login('NzkwNjE3NzU5MTc1NjcxODU4.X-DOKg.Hd9x9CcNYP4U3Lvz6E9iMYQuhAM');
