@@ -389,4 +389,4 @@ client.on("guildMemberRemove", (member) => {
   client.channels.cache.get(chx).send(wembed);
 });
 
-client.login('NzkwNjE3NzU5MTc1NjcxODU4.X-DOKg.N3rxaF6OWh6wCVSuHSi96Zh73eM');
+client.login(process.env.token);
