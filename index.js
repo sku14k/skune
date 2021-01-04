@@ -69,6 +69,19 @@ client.on('message', async message => {
         prefix = prefixes;
     }
 
+    if(message.content === 'skuneprefix') {
+      message.reply({
+        embed: {
+          title: 'Комманд амжилттай ажиллаа :white_check_mark:',
+          color: '#679ad8',
+          description: `\`\`\`Сервер дээрх комманд тэмдэг ${prefix} дээр тохируулагдсан байна.\`\`\``,
+          footer: {
+            text: "© 2020. 14K"
+          }
+        }
+      })
+    }
+    
     if(prefix !== 'skune') {
       if(message.content === 'skunehelp') {
         message.reply({
