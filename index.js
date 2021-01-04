@@ -326,7 +326,7 @@ client.on('message', async message => {
 
 client.on("guildCreate", async guild => {
   let prefix;
-  let prefixes = await db.fetch(`prefix_${message.guild.id}`);
+  let prefixes = await db.fetch(`prefix_${guild.id}`);
 
   if(prefixes == null) {
       prefix = 'skune'
