@@ -325,6 +325,15 @@ client.on('message', async message => {
 });
 
 client.on("guildCreate", guild => {
+  let prefix;
+  let prefixes = await db.fetch(`prefix_${message.guild.id}`);
+
+  if(prefixes == null) {
+      prefix = 'skune'
+  } else {
+      prefix = prefixes;
+  }
+  
   var found = false;
   guild.channels.cache.forEach((channel)=>{
       if(found == true || channel.type != "text") {
