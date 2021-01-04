@@ -324,7 +324,7 @@ client.on('message', async message => {
   }
 });
 
-client.on("guildCreate", guild => {
+client.on("guildCreate", async guild => {
   let prefix;
   let prefixes = await db.fetch(`prefix_${message.guild.id}`);
 
