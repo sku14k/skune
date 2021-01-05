@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     name: "userinfo",
     description: 'Энэ комманд нь гишүүний мэдээллийг харуулах үүрэгтэй.',
-    async execute(client, message, args) {
+    async execute(message, args) {
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
 
         let status;
