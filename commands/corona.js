@@ -3,7 +3,8 @@ const { MessageEmbed } = require('discord.js')
 
 module.exports = {
     name: "corona",
-    async execute(client, message, args) {
+    description: 'Энэ комманд нь коронавирусын тухай мэдээллийг харуулах үүрэгтэй.',
+    async execute(message, args) {
         const baseUrl = "https://corona.lmao.ninja/v2";
 
         let url, response, corona;
