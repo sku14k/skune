@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const { description } = require('./afk');
 const db = require('quick.db');
 
 module.exports = {
