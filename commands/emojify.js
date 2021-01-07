@@ -1,4 +1,5 @@
 const { Client, Message, MessageEmbed } = require('discord.js');
+const db = require('quick.db');
 
 module.exports = {
     name: 'emojify',
@@ -17,7 +18,7 @@ module.exports = {
         } else {
             prefix = prefixes;
         }
-        
+
         if(!args.length) return message.reply({
             embed: {
                 color: "#FFFF00",
