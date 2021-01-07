@@ -62,8 +62,8 @@ module.exports = {
         message.guild.fetchBans().then(async bans => {
             if(bans.size == 0) return message.reply({
                 embed: {
-                    color: "#00FF00",
-                    title: 'Анхааруулга :exclamation:',
+                    color: "#FF0000",
+                    title: 'Алдаа гарлаа :x:',
                     description: `\`\`\`Серверээс хориг тавьсан хүн олдоогүй тул комманд ажиллаж чадсангүй.\`\`\``,
                     footer: {
                         text: "© 2021. 14K"
