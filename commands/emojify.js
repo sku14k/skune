@@ -9,7 +9,43 @@ module.exports = {
      * @param {String[]} args 
      */
     async execute(message, args) {
-        if(!args.length) return message.reply('Please specify a text to translate.')
+        if(!args.length) return message.reply({
+            embed: {
+                color: "#FFFF00",
+                title: 'Комманд ажиллуулах зөвлөмж :woman_tipping_hand:',
+                description: `\`\`\`Энэ комманд нь тухайн серверийн текст сувагт эможи мессеж бичих үүрэгтэй.\`\`\``,
+                fields: [
+                    {
+                        name: 'Зөвлөмж',
+                        value: `\`\`\`${prefix}emojify [Мессеж] гэж бичсэнээр серверийн текст сувагт эможи мессеж бичигдэнэ.\`\`\``,
+                    },
+                ],
+                footer: {
+                    text: "© 2021. 14K"
+                }
+            }
+        }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
+
+        if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.reply({
+            embed: {
+                color: "#FF0000",
+                description: `\`\`\`Танд энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
+                footer: {
+                    text: "© 2021. 14K"
+                }
+            }
+        }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
+
+        if(!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.reply({
+            embed: {
+                color: "#FF0000",
+                description: `\`\`\`Надад энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
+                footer: {
+                    text: "© 2021. 14K"
+                }
+            }
+        }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
+
         const specialCodes = {
             '0': ':zero:',
             '1': ':one:',
