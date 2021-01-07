@@ -72,7 +72,7 @@ module.exports = {
             }
         }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
 
-        let gRole = message.guild.roles.find(`name`, role);
+        let gRole = message.guild.roles.cache.find(r=> r.name === role);
 
         if(!gRole) return message.reply({
             embed: {
