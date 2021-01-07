@@ -109,6 +109,6 @@ module.exports = {
                     text: "© 2021. 14K"
                 }
             }
-        }).then(m => m.delete({timeout: 10000})).then(message.delete({timeout: 10000})));
+        }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000})));
     }
 }
