@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports = {
-    name: 'sr.js',
+    name: 'sr',
     async execute(message, args) {
         let prefix;
         let prefixes = await db.fetch(`prefix_${message.guild.id}`);
