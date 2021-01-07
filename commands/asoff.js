@@ -1,5 +1,4 @@
 const rdb = require('../reconDB');
-const { execute } = require('./ason');
 
 module.exports = {
     name: 'asoff',

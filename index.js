@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const db = require('quick.db');
+const rdb = require('./reconDB');
+const words = require('./as.json');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -409,6 +411,26 @@ client.on("guildMemberRemove", (member) => {
       .setFooter("© 2021. 14K")
       
   client.channels.cache.get(chx).send(wembed);
+});
+
+client.on('message', async(message) => {
+  if(await rdb.has(`swear-${message.guild.id}`) === false) return;
+
+  for (let i = 0; i < words.length; i++) {
+      if(message.content.includes(words[i])) {
+          message.delete();
+          message.reply({
+              embed: {
+                  color: "#00FF00",
+                  title: 'Анхааруулга :exclamation:',
+                  description: `\`\`\`Энэ үгийг сервер дээр ашиглахыг хориглоно!\`\`\``,
+                  footer: {
+                      text: "© 2021. 14K"
+                  }
+              }
+          }).then(m => m.delete({timeout: 3000}));
+      }
+  }
 });
 
 client.login(process.env.token);
