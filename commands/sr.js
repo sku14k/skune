@@ -3,7 +3,7 @@ const db = require('quick.db');
 
 module.exports = {
     name: 'sr',
-    async execute(client, message, args) {
+    async execute(message, args) {
         let prefix;
         let prefixes = await db.fetch(`prefix_${message.guild.id}`);
     
@@ -72,7 +72,7 @@ module.exports = {
             }
         }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
 
-        let gRole = message.guild.roles.find(`name`, role);
+        let gRole = message.guild.roles.cache.find(`name`, role);
         if(!gRole) return message.reply({
             embed: {
                 color: "#FF0000",
