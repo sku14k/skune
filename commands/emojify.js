@@ -9,6 +9,15 @@ module.exports = {
      * @param {String[]} args 
      */
     async execute(message, args) {
+        let prefix;
+        let prefixes = await db.fetch(`prefix_${message.guild.id}`);
+    
+        if(prefixes == null) {
+            prefix = 'skune'
+        } else {
+            prefix = prefixes;
+        }
+        
         if(!args.length) return message.reply({
             embed: {
                 color: "#FFFF00",
