@@ -72,6 +72,6 @@ module.exports = {
             return letter;
         }).join('');
 
-        message.channel.send(text)
+        message.channel.send(text).then(message.delete());
     }
 }
