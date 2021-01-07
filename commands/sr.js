@@ -72,7 +72,8 @@ module.exports = {
             }
         }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
 
-        let gRole = message.guild.roles.cache.find(`name`, role);
+        let gRole = message.guild.roles.cache.find(role => role.name.toLowerCase() === role);
+        
         if(!gRole) return message.reply({
             embed: {
                 color: "#FF0000",
