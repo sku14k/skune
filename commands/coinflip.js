@@ -14,7 +14,7 @@ module.exports = {
             embed: {
                 title: `Зоос шидэх`,
                 color: '#679ad8',
-                description: `\`\`\`${message.author} та ${output} буулгалаа\`\`\``,
+                description: `\`\`\`${message.author.tag} та ${output} буулгалаа\`\`\``,
                 footer: {
                     text: "© 2021. 14K"
                 }
