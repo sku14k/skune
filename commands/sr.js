@@ -73,7 +73,7 @@ module.exports = {
             }
         }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
 
-        if(message.member.roles.has(role.id)) return message.reply({
+        if(message.member.roles.cache.has(role.id)) return message.reply({
             embed: {
                 color: "#FF0000",
                 title: 'Алдаа гарлаа :x:',
