@@ -73,7 +73,7 @@ module.exports = {
             }
         }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
 
-        await user.addRole(role.id), message.reply({
+        await user.roles.add(role.id), message.reply({
             embed: {
                 color: "#679ad8",
                 title: 'Комманд амжилттай ажиллаа :white_check_mark:',
