@@ -73,6 +73,17 @@ module.exports = {
             }
         }).then(m => m.delete({timeout: 60000})).then(message.delete({timeout: 60000}));
 
+        if(user.has(role)) return message.reply({
+            embed: {
+                color: "#FF0000",
+                title: 'Алдаа гарлаа :x:',
+                description: `\`\`\`Дурдсан гишүүн серверт байгаагүй эсвэл та дурдаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
+                footer: {
+                    text: "© 2021. 14K"
+                }
+            }
+        }).then(m => m.delete({timeout: 15000})).then(message.delete({timeout: 15000}));
+
         await user.roles.add(role.id), message.reply({
             embed: {
                 color: "#679ad8",
