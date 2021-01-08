@@ -77,7 +77,7 @@ module.exports = {
             embed: {
                 color: "#679ad8",
                 title: 'Комманд амжилттай ажиллаа :white_check_mark:',
-                description: `\`\`\`${user.name} гишүүнд амжилттай ${role.name} гэсэн ажил үүрэг олголоо.\`\`\``,
+                description: `\`\`\`${user.user.tag} гишүүнд амжилттай ${role.name} гэсэн ажил үүрэг олголоо.\`\`\``,
                 footer: {
                     text: "© 2021. 14K"
                 }
