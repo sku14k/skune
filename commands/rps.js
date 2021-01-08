@@ -5,7 +5,7 @@ module.exports = {
 	async execute(message, args) {
 		let embed = new discord.MessageEmbed()
 		.setTitle("Тоглоом :video_game:")
-		.setDescription("")
+		.setDescription("Хайч, Чулуу, Даавуу")
         .setColor('#679ad8')
 		let msg = await message.channel.send(embed)
 		await msg.react("🗻")
@@ -23,7 +23,7 @@ module.exports = {
         		const reaction = collected.first()
                 let result = new discord.MessageEmbed()
                 .setColor("#679ad8")
-        		.setTitle("Үзүүлэлт")
+        		.setTitle("Тоглолтын үзүүлэлт :pencil:")
         		.addField("Таны гаргасан", `${reaction.emoji.name}`)
         		.addField("Миний гаргасан", `${me}`)
 			await msg.edit(result)
