@@ -1,42 +1,54 @@
-const db = require('quick.db');
-const ms = require('parse-ms');
+const Discord = require("discord.js");
+const db = require("quick.db");
+const ms = require("parse-ms");
+const cooldown = new Set();
 
 module.exports = {
   name: "daily",
-  description: "daily",
-
-  async execute(message, args) {
-    let user = message.author;
-    let timeout = 84600000;
-    let amount = 100;
-
-    let daily = await db.fetch(`daily_${user.id}`);
-
-    if (daily !== null && timeout - (Date.now() - daily) > 0) {
-      let time = ms(timeout - (Date.now() - daily));
-
-      return message.reply({
-        embed: {
-          color: "#679ad8",
-          description: `\`\`\`Та аль хэдийнээ өнөөдрийн skune зоосыг цуглуулсан байна. ${time.days}өдөр, ${time.hours}цаг, ${time.minutes}минут, ${time.seconds}секундийн дараа өдрийн skune зоосыг цуглуулна уу.\`\`\``,
-          footer: {
-            text: "© 2021. 14K",
-          }
-        }
-      });
-    } else {
-      db.add(`money_${message.guild.id}_${user.id}`, amount);
-      db.set(`daily_${message.guild.id}_${user.id}`, Date.now());
-
+  description: "provides the user with coins daily",
+  execute(message, args) {
+    if (db.get(`user_${message.author.id}.bal`) === null) {
       message.reply({
         embed: {
           color: "#679ad8",
-          description: `\`\`\`Та өнөөдрийн ${amount} skune зоосыг амжилттай цуглууллаа.\`\`\``,
+          description: `\`\`\`Та эхлээд банканд данс нээлгэх ёстой. ${prefix}start гэж бичсэнээр данс нээгдэнэ.\`\`\``,
           footer: {
             text: "© 2021. 14K",
           },
-        }
+        },
       });
+    } else {
+      if (cooldown.has(`daily_${message.author.id}`)) {
+        message.reply({
+          embed: {
+            color: "#FF0000",
+            description: `\`\`\`Та маргааш skune зоосыг цуглуулна уу.\`\`\``,
+            footer: {
+              text: "© 2021. 14K",
+            },
+          },
+        });
+      } else {
+        let rand = Math.floor(Math.random() * (1000 - 500) + 500);
+
+        db.add(`user_${message.author.id}.bal`, rand);
+
+        message.reply({
+          embed: {
+            color: "#679ad8",
+            description: `\`\`\`Та ${rand} ширхэг skune зоос авлаа\`\`\``,
+            footer: {
+              text: "© 2021. 14K",
+            },
+          },
+        });
+
+        cooldown.add(`daily_${message.author.id}`);
+
+        setTimeout(() => {
+          cooldown.delete(`daily_${message.author.id}`);
+        }, 8.64e7);
+      }
     }
-  }
+  },
 };
