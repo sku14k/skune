@@ -5,7 +5,7 @@ module.exports = {
   name: "bal",
   description: "blah",
 
-  async run(client, message, args) {
+  async execute(message, args) {
     let user = message.mentions.users.first() || message.author;
 
     let bal = await db.fetch(`money_${message.guild.id}_${user.id}`);

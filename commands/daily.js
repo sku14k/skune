@@ -1,12 +1,11 @@
 const db = require("quick.db");
 const ms = require("parse-ms");
-const { run } = require("./bal");
 
 module.exports = {
   name: "daily",
   description: "daily",
 
-  async run(client, message, args) {
+  async execute(message, args) {
     let user = message.author;
     let timeout = 84600000;
     let amount = 100;
