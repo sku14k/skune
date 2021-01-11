@@ -3,9 +3,6 @@ const fs = require("fs");
 const db = require("quick.db");
 const rdb = require("./reconDB");
 const words = require("./as.json");
-const EconomyClient = require("./structures/Client");
-
-new EconomyClient().start(require(`./commands`));
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
