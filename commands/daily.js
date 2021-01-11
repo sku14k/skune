@@ -26,7 +26,7 @@ module.exports = {
       db.add(`money_${message.guild.id}_${user.id}`, amount);
       db.set(`daily_${message.guild.id}_${user.id}`, Date.now());
 
-      message.reply({
+      message.channel.send({
         color: "#679ad8",
         description: `\`\`\`Та өнөөдрийн ${amount} skune зоосыг амжилттай цуглууллаа.\`\`\``,
         footer: {

@@ -14,7 +14,7 @@ module.exports = {
     message.reply({
       embed: {
         color: "#679ad8",
-        description: `\`\`\`${user.tag} гишүүн ${bal} ширхэг skune зоостой байна.\`\`\``,
+        description: `\`\`\`Та ${bal} ширхэг skune зоостой байна.\`\`\``,
         footer: {
           text: "© 2021. 14K",
         },
