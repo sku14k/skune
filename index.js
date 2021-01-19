@@ -14,6 +14,8 @@ const db = require("quick.db");
 const rdb = require("./reconDB");
 const words = require("./as.json");
 
+require('dotenv').config();
+
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 client.queue = new Map();
@@ -496,4 +498,4 @@ client.on("message", async (message) => {
   }
 });
 
-client.login(process.env.token);
+client.login(process.env.BOT_TOKEN);
