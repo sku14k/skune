@@ -1,3 +1,13 @@
+const express = require(`express`)
+const app = express();
+const port = 3000
+
+app.get('/', (req, res) => res.send(`skune аслаа.`))
+app.listen(port, () =>
+console.log(`Таны бот https://localhost:${port} дээр ажиллаж байна.`)
+);
+
+
 const Discord = require("discord.js");
 const fs = require("fs");
 const db = require("quick.db");
