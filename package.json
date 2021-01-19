@@ -54,7 +54,7 @@
     "webpack-dev-server": "^3.11.1",
     "youtube-sr": "^2.0.5",
     "yt-search": "^2.5.1",
-    "ytdl-core": "^4.4.0",
+    "ytdl-core": "^4.4.3",
     "ytdl-core-discord": "^1.2.5",
     "ytpl": "^2.0.4"
   },
