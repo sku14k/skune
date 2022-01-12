@@ -4,6 +4,7 @@ const db = require("quick.db");
 const rdb = require("./reconDB");
 const words = require("./as.json");
 const fetch = require('node-fetch');
+const client = new Discord.Client();
 require('dotenv-flow').config();
 
 const config = {
@@ -11,7 +12,11 @@ const config = {
   owner: process.env.OWNER
 };
 
-const client = new Discord.Client();
+const { Player } = require("discord-player");
+const settings = require("./config/bot.json");
+const player = new Player(client, settings.youtube_api);
+client.player = player;
+
 client.commands = new Discord.Collection();
 client.queue = new Map();
 
@@ -42,7 +47,7 @@ client.on("message", async (message) => {
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
-
+ 
   if (!message.client.commands.has(command))
     return message.reply({
       embed: {
@@ -79,26 +84,22 @@ client.on("message", async (message) => {
     prefix = prefixes;
   }
 
-  if (message.content === "skuneprefix") {
-    message.reply({
-      embed: {
-        color: "#679ad8",
-        description: `\`\`\`Сервер дээрх командын угтвар тэмдэг <${prefix}> дээр тохируулагдсан байна.\`\`\``,
-        footer: {
-          text: "© 2021. 14K",
-        },
-      },
-    });
-  }
-
   if (prefix !== "skune") {
-    if (message.content === "skunehelp") {
+    if (message.content.toLowerCase() == "skuneprefix") {
       message.reply({
         embed: {
-          author: {
-            name: "sku14k#1263 - Хөгжүүлэгч",
-            icon_url: "https://i.imgur.com/0McUiDc.jpg",
+          color: "#679ad8",
+          description: `\`\`\`Сервер дээрх командын угтвар тэмдэг <${prefix}> дээр тохируулагдсан байна.\`\`\``,
+          footer: {
+            text: "© 2021. 14K",
           },
+        },
+      });
+    }
+
+    if (message.content.toLowerCase() == "skunehelp") {
+      message.reply({
+        embed: {
           color: "#679ad8",
           title: "Хэрэглэх заавар",
           description: `Намайг сонгон хэрэглэж байгаа танд баярлалаа`,
@@ -155,10 +156,6 @@ client.on("guildCreate", async (guild) => {
       found = true;
       let embed = new Discord.MessageEmbed()
         .setTitle("skune амжилттай дискорд серверт нэгдлээ")
-        .setAuthor(
-          "sku14k#1263 - Хөгжүүлэгч",
-          "https://i.imgur.com/0McUiDc.jpg"
-        )
         .setDescription(
           "Намайг сонгон хэрэглэж байгаа танд баярлалаа"
         )
@@ -254,26 +251,22 @@ client.on("guildMemberRemove", (member) => {
   client.channels.cache.get(chx).send(wembed);
 });
 
-client.on("message", async (message) => {
-  if ((await rdb.has(`swear-${message.guild.id}`)) === false) return;
+// client.on("message", async (message) => {
+//   if ((await rdb.has(`swear-${message.guild.id}`)) === false) return;
 
-  for (let i = 0; i < words.length; i++) {
-    if (message.content.includes(words[i])) {
-      message.delete();
-      message
-        .reply({
-          embed: {
-            color: "#00FF00",
-            title: "Анхааруулга :exclamation:",
-            description: `\`\`\`Энэ үгийг сервер дээр ашиглахыг хориглоно!\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 3000 }));
-    }
-  }
-});
+//   for (let i = 0; i < words.length; i++) {
+//     if (message.content.includes(words[i])) {
+//       message.delete();
+//       message
+//         .reply({
+//           embed: {
+//             color: "#FF7800",
+//             description: `\`\`\`Энэ үгийг сервер дээр ашиглахыг хориглоно!\`\`\``,
+//           },
+//         })
+//         .then((m) => m.delete({ timeout: 3000 }));
+//     }
+//   }
+// });
 
 client.login(config.token);

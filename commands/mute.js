@@ -5,7 +5,6 @@ const db = require("quick.db");
 
 module.exports = {
   name: "mute",
-  description: "Энэ комманд нь тухайн гишүүнийг чимээгүй болгох үүрэгтэй.",
   /**
    * @param {Message} message
    */
@@ -19,83 +18,24 @@ module.exports = {
       prefix = prefixes;
     }
 
-    if (!message.member.hasPermission("MANAGE_MESSAGES"))
-      return message
-        .reply({
-          embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Танд энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) return;
 
-    if (!message.guild.me.hasPermission("MANAGE_MESSAGES"))
-      return message
-        .reply({
-          embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Надад энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
+    if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return;
 
     const Member =
       message.mentions.members.first() ||
       message.guild.members.cache.get(args[0]);
 
-    if (!Member)
-      return message
-        .reply({
-          embed: {
-            color: "#FFFF00",
-            title: "Комманд ажиллуулах зөвлөмж :woman_tipping_hand:",
-            description: `\`\`\`Энэ комманд нь тухайн гишүүнийг чимээгүй болгох үүрэгтэй.\`\`\``,
-            fields: [
-              {
-                name: "Зөвлөмж",
-                value: `\`\`\`${prefix}mute [Гишүүн] гэж бичсэнээр гишүүн чимээгүй болно.\`\`\``,
-              },
-            ],
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 60000 }))
-        .then(message.delete({ timeout: 60000 }));
+    if (!Member) return;
 
     const role = message.guild.roles.cache.find(
-      (role) => role.name.toLowerCase() === "хэлгүй хүн"
+      (role) => role.name.toLowerCase() === "дуугүй"
     );
     if (!role) {
       try {
-        message
-          .reply({
-            embed: {
-              color: "FF8F00",
-              title: "Зарлал :grey_exclamation:",
-              description: `\`\`\`Хэлгүй хүн гэсэн ажил үүрэг олдоогүй тул шинээр үүсгэж байна.\`\`\``,
-              footer: {
-                text: "© 2021. 14K",
-              },
-            },
-          })
-          .then((m) => m.delete({ timeout: 60000 }))
-          .then(message.delete({ timeout: 60000 }));
-
         let muterole = await message.guild.roles.create({
           data: {
-            name: "хэлгүй хүн",
+            name: "дуугүй",
             permissions: [],
           },
         });
@@ -107,36 +47,19 @@ module.exports = {
               ADD_REACTIONS: false,
             });
           });
-        message
-          .reply({
-            embed: {
-              color: "FF8F00",
-              title: "Зарлал :grey_exclamation:",
-              description: `\`\`\`Хэлгүй хүн гэсэн ажил үүрэг амжилттай шинээр үүсгэлээ.\`\`\``,
-              footer: {
-                text: "© 2021. 14K",
-              },
-            },
-          })
-          .then((m) => m.delete({ timeout: 60000 }))
-          .then(message.delete({ timeout: 60000 }));
       } catch (error) {
         console.log(error);
       }
     }
     let role2 = message.guild.roles.cache.find(
-      (r) => r.name.toLowerCase() === "хэлгүй хүн"
+      (r) => r.name.toLowerCase() === "дуугүй"
     );
     if (Member.roles.cache.has(role2.id))
       return message
         .reply({
           embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`${Member.displayName} гишүүн аль хэдийнээ чимээгүй болсон байна.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
+            color: "#E60000",
+            description: `\`\`\`${Member.displayName} дуугүй болчихсон байна.\`\`\``,
           },
         })
         .then((m) => m.delete({ timeout: 15000 }))
@@ -146,12 +69,8 @@ module.exports = {
     message
       .reply({
         embed: {
-          color: "#679ad8",
-          title: "Комманд амжилттай ажиллаа :white_check_mark:",
-          description: `\`\`\`${Member.displayName} гишүүнийг амжилттай чимээгүй болголоо.\`\`\``,
-          footer: {
-            text: "© 2021. 14K",
-          },
+          color: "#4CBB17",
+          description: `\`\`\`${Member.displayName} дуугүй боллоо.\`\`\``,
         },
       })
       .then((m) => m.delete({ timeout: 15000 }))

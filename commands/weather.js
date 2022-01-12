@@ -4,8 +4,7 @@ const db = require("quick.db");
 
 module.exports = {
   name: "weather",
-  description:
-    "Энэ комманд нь тухайн улсын цаг агаарын мэдээллийг харуулах үүрэгтэй.",
+  description: "Энэ комманд нь тухайн улсын цаг агаарын мэдээллийг харуулах үүрэгтэй.",
   async execute(message, args) {
     let prefix;
     let prefixes = await db.fetch(`prefix_${message.guild.id}`);

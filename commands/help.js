@@ -18,13 +18,8 @@ module.exports = {
     if (!args[0])
       return message.reply({
         embed: {
-          author: {
-            name: "sku14k#1263 - Хөгжүүлэгч",
-            icon_url: "https://i.imgur.com/0McUiDc.jpg",
-          },
           color: "#679ad8",
           title: "Хэрэглэх заавар",
-          description: `Намайг сонгон хэрэглэж байгаа танд баярлалаа`,
           fields: [
             {
               name: "Сервер удирдах",
@@ -56,53 +51,39 @@ module.exports = {
     if (args[0].toLowerCase() === "server") {
       const pageone = new Discord.MessageEmbed()
         .setColor("#679ad8")
-        .setAuthor(
-          "sku14k#1263 - Хөгжүүлэгч",
-          "https://i.imgur.com/0McUiDc.jpg"
-        )
         .setTitle("Сервер удирдах командууд")
-        .setDescription(
-          "Намайг сонгон хэрэглэж байгаа танд баярлалаа"
-        )
         .setFooter("© 2021. 14K")
         .addFields(
           {
             name: "Гишүүнд серверээс хориг тавих",
-            value: `\`\`\`${prefix}ban [@Гишүүн] [Шалтгаан]\`\`\``,
+            value: `\`\`\`${prefix}ban [@Гишүүн] [Шалтгаан Эсвэл Хоосон]\`\`\``,
           },
           {
             name: "Гишүүнд серверээс тавьсан хоригийг цуцлах",
-            value: `\`\`\`${prefix}unban [@Гишүүн] [Шалтгаан]\`\`\``,
+            value: `\`\`\`${prefix}unban [@Гишүүн] [Шалтгаан Эсвэл Хоосон]\`\`\``,
           },
           {
             name: "Гишүүнийг серверээс гаргах",
-            value: `\`\`\`${prefix}kick [@Гишүүн] [Шалтгаан]\`\`\``,
+            value: `\`\`\`${prefix}kick [@Гишүүн] [Шалтгаан Эсвэл Хоосон]\`\`\``,
           },
           {
-            name: "Гишүүнийг чимээгүй болгох",
+            name: "Гишүүний чат бичих эрхийг хураах",
             value: `\`\`\`${prefix}mute [@Гишүүн]\`\`\``,
           },
           {
-            name: "Гишүүнийг чимээтэй болгох",
+            name: "Гишүүнд чат бичих эрх олгох",
             value: `\`\`\`${prefix}unmute [@Гишүүн]\`\`\``,
           },
         );
 
       const pagetwo = new Discord.MessageEmbed()
         .setColor("#679ad8")
-        .setAuthor(
-          "sku14k#1263 - Хөгжүүлэгч",
-          "https://i.imgur.com/0McUiDc.jpg"
-        )
         .setTitle("Сервер удирдах командууд")
-        .setDescription(
-          "Намайг сонгон хэрэглэж байгаа танд баярлалаа"
-        )
         .setFooter("© 2021. 14K")
         .addFields(
           {
-            name: "Гишүүнийг түр чимээгүй болгох",
-            value: `\`\`\`${prefix}tempmute [@Гишүүн] [Хугацаа]\`\`\``,
+            name: "Гишүүний чат бичих эрхийг түр хураах",
+            value: `\`\`\`${prefix}tempmute [@Гишүүн] [Хугацаа | 1m = 1 минут, 30s = 30 секунд]\`\`\``,
           },
           {
             name: "Гишүүнд эсвэл өөртөө хоч өгөх",

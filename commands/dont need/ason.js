@@ -40,11 +40,7 @@ module.exports = {
         .reply({
           embed: {
             color: "#679ad8",
-            title: "Комманд амжилттай ажиллаа :white_check_mark:",
-            description: `\`\`\`Хараалын үг шүүгч идэвхижлээ.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
+            description: `\`\`\`Хараалын үг шүүгч идэвхжлээ.\`\`\``,
           },
         })
         .then((m) => m.delete({ timeout: 15000 }))
@@ -54,11 +50,7 @@ module.exports = {
         .reply({
           embed: {
             color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Хараалын үг шүүгч аль хэдийнээ идэвхижсэн байна.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
+            description: `\`\`\`Хараалын үг шүүгч идэвхэжсэн байна.\`\`\``,
           },
         })
         .then((m) => m.delete({ timeout: 15000 }))
