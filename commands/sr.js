@@ -13,35 +13,9 @@ module.exports = {
       prefix = prefixes;
     }
 
-    if (!message.member.hasPermission("MANAGE_MEMBERS"))
-      return message
-        .reply({
-          embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Танд энэ коммандыг ажиллуулах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
+    if (!message.member.hasPermission("MANAGE_MEMBERS")) return;
 
-    if (!message.guild.me.hasPermission("MANAGE_MEMBERS"))
-      return message
-        .reply({
-          embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Надад энэ коммандыг ажиллуулх эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
+    if (!message.guild.me.hasPermission("MANAGE_MEMBERS")) return;
 
     const user = message.mentions.members.first();
 
@@ -50,16 +24,9 @@ module.exports = {
         .reply({
           embed: {
             color: "#FFFF00",
-            title: "Комманд ажиллуулах зөвлөмж :woman_tipping_hand:",
-            description: `\`\`\`Энэ комманд нь тухайн гишүүнд ажил үүрэг олгох үүрэгтэй.\`\`\``,
-            fields: [
-              {
-                name: "Зөвлөмж",
-                value: `\`\`\`${prefix}sr [Гишүүн] [Ажил Үүрэг] гэж бичсэнээр гишүүнд ажил үүрэг олгоно.\`\`\``,
-              },
-            ],
+            description: `\`\`\`${prefix}sr [@Хэрэглэгч] [Ажил Үүрэг]\`\`\``,
             footer: {
-              text: "© 2021. 14K",
+              text: "© 2022 14K",
             },
           },
         })
@@ -75,16 +42,9 @@ module.exports = {
         .reply({
           embed: {
             color: "#FFFF00",
-            title: "Комманд ажиллуулах зөвлөмж :woman_tipping_hand:",
-            description: `\`\`\`Энэ комманд нь тухайн гишүүнд ажил үүрэг олгох үүрэгтэй.\`\`\``,
-            fields: [
-              {
-                name: "Зөвлөмж",
-                value: `\`\`\`${prefix}sr [Гишүүн] [Ажил Үүрэг] гэж бичсэнээр гишүүнд ажил үүрэг олгоно.\`\`\``,
-              },
-            ],
+            description: `\`\`\`Дурдсан ажил үүрэг олдсонгүй эсвэл дурдсангүй.\`\`\``,
             footer: {
-              text: "© 2021. 14K",
+              text: "© 2022 14K",
             },
           },
         })
@@ -95,11 +55,10 @@ module.exports = {
       return message
         .reply({
           embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Гишүүнд аль хэдийнээ ${role.name} гэсэн ажил үүрэг олгосон байна.\`\`\``,
+            color: "#679ad8",
+            description: `\`\`\`Хэрэглэгч аль хэдийнээ ${role.name} ажил үүрэгтэй байна.\`\`\``,
             footer: {
-              text: "© 2021. 14K",
+              text: "© 2022 14K",
             },
           },
         })
@@ -111,10 +70,9 @@ module.exports = {
         .reply({
           embed: {
             color: "#679ad8",
-            title: "Комманд амжилттай ажиллаа :white_check_mark:",
-            description: `\`\`\`${user.user.tag} гишүүнд амжилттай ${role.name} гэсэн ажил үүрэг олголоо.\`\`\``,
+            description: `\`\`\`${user.user.tag} хэрэглэгчд ${role.name} ажил үүрэг олголоо.\`\`\``,
             footer: {
-              text: "© 2021. 14K",
+              text: "© 2022 14K",
             },
           },
         })

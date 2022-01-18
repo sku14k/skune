@@ -3,7 +3,6 @@ const db = require("quick.db");
 
 module.exports = {
   name: "setwelcome",
-  description: "Энэ комманд нь серверийн угтаж авах сувгийг өөрчилдөг.",
   async execute(message, args) {
     let prefix;
     let prefixes = await db.fetch(`prefix_${message.guild.id}`);
@@ -21,16 +20,9 @@ module.exports = {
 
     if (!channel) {
       const embed = new Discord.MessageEmbed()
-        .setColor("#FFFF00")
-        .setTitle("Комманд ажиллуулах зөвлөмж :woman_tipping_hand:")
-        .setDescription(
-          "```Энэ комманд нь серверийн шинэ гишүүн угтаж авах текст сувгийг өөрчилдөг.```"
-        )
-        .addFields({
-          name: "Зөвлөмж",
-          value: `\`\`\`${prefix}setwelcome [Текст Суваг] гэж бичсэнээр серверийн шинэ гишүүн угтаж авах текст суваг өөрчлөгдөнө.\`\`\``,
-        })
-        .setFooter("© 2021. 14K");
+        .setColor("#679ad8")
+        .setDescription(`\`\`\`${prefix}setwelcome [#Текст Суваг]\`\`\``)
+        .setFooter("© 2022 14K");
       return message
         .reply(embed)
         .then((m) => m.delete({ timeout: 60000 }))
@@ -41,14 +33,13 @@ module.exports = {
 
     const embed = new Discord.MessageEmbed()
       .setColor("#679ad8")
-      .setTitle("Комманд амжилттай ажиллаа :smile:")
       .setDescription(
-        `\`\`\`Серверийн шинэ гишүүн угтаж авах текст суваг амжилттай #${channel.name} болж өөрчлөгдлөө.\`\`\``
+        `\`\`\`Серверийн шинэ хэрэглэгч угтаж авах текст суваг #${channel.name} болж өөрчлөгдлөө.\`\`\``
       )
-      .setFooter("© 2021. 14K");
+      .setFooter("© 2022 14K");
     message
       .reply(embed)
-      .then((m) => m.delete({ timeout: 60000 }))
-      .then(message.delete({ timeout: 60000 }));
+      .then((m) => m.delete({ timeout: 15000 }))
+      .then(message.delete({ timeout: 15000 }));
   },
 };

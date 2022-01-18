@@ -3,7 +3,6 @@ const db = require("quick.db");
 
 module.exports = {
   name: "say",
-  description: "Энэ комманд нь ботоор мессеж бичүүлэх үүрэгтэй.",
   async execute(message, args) {
     let prefix;
     let prefixes = await db.fetch(`prefix_${message.guild.id}`);
@@ -14,51 +13,18 @@ module.exports = {
       prefix = prefixes;
     }
 
-    if (!message.member.hasPermission("MANAGE_MESSAGES"))
-      return message
-        .reply({
-          embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Танд энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) return;
 
-    if (!message.guild.me.hasPermission("MANAGE_MESSAGES"))
-      return message
-        .reply({
-          embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Надад энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
+    if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return;
 
     if (!args[0])
       return message
         .reply({
           embed: {
             color: "#FFFF00",
-            title: "Комманд ажиллуулах зөвлөмж :woman_tipping_hand:",
-            description: `\`\`\`Энэ комманд нь ботоор мессеж бичүүлэх үүрэгтэй.\`\`\``,
-            fields: [
-              {
-                name: "Зөвлөмж",
-                value: `\`\`\`${prefix}say [Мессеж] эсвэл ${prefix}say embed [Мессеж] гэж бичсэнээр бот гишүүний бичсэн мессежийг бичнэ.\`\`\``,
-              },
-            ],
+            description: `\`\`\`${prefix}say [Мессеж] эсвэл ${prefix}say embed [Мессеж]\`\`\``,
             footer: {
-              text: "© 2021. 14K",
+              text: "© 2022 14K",
             },
           },
         })

@@ -3,7 +3,6 @@ const db = require("quick.db");
 
 module.exports = {
   name: "setleave",
-  description: "Энэ комманд нь серверийн хүн үдэх сувагийг өөрчилдөг.",
   async execute(message, args) {
     let prefix;
     let prefixes = await db.fetch(`prefix_${message.guild.id}`);
@@ -18,16 +17,11 @@ module.exports = {
 
     if (!channel) {
       const embed = new Discord.MessageEmbed()
-        .setColor("#FFFF00")
-        .setTitle("Комманд ажиллуулах зөвлөмж :woman_tipping_hand:")
+        .setColor("#679ad8")
         .setDescription(
-          `\`\`\`Энэ комманд нь серверийн гишүүн үдэж явуулах текст сувгийг өөрчилдөг.\`\`\``
+          `\`\`\`${prefix}setleave [#Текст Суваг]\`\`\``
         )
-        .addFields({
-          name: "Зөвлөмж",
-          value: `\`\`\`${prefix}setleave [Текст Суваг] гэж бичсэнээр серверийн гишүүн үдэж явуулах текст суваг өөрчлөгдөнө.\`\`\``,
-        })
-        .setFooter("© 2021. 14K");
+        .setFooter("© 2022 14K");
       return message
         .reply(embed)
         .then((m) => m.delete({ timeout: 60000 }))
@@ -38,11 +32,10 @@ module.exports = {
 
     const embed = new Discord.MessageEmbed()
       .setColor("#679ad8")
-      .setTitle("Комманд амжилттай ажиллаа :white_check_mark:")
       .setDescription(
-        `\`\`\`Серверийн гишүүн үдэж явуулах текст суваг амжилттай #${channel.name} болж өөрчлөгдлөө.\`\`\``
+        `\`\`\`Серверийн хэрэглэгч үдэж явуулах текст суваг #${channel.name} болж өөрчлөгдлөө.\`\`\``
       )
-      .setFooter("© 2021. 14K");
+      .setFooter("© 2022 14K");
     message
       .reply(embed)
       .then((m) => m.delete({ timeout: 60000 }))

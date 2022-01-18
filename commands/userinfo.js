@@ -2,7 +2,6 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "userinfo",
-  description: "Энэ комманд нь гишүүний мэдээллийг харуулах үүрэгтэй.",
   async execute(message, args) {
     let user =
       message.mentions.members.first() ||
@@ -31,8 +30,8 @@ module.exports = {
       user.user.createdAt.getMonth() + 1
     }-р сарын ${user.user.createdAt.getDate()}-нд ${user.user.createdAt.getHours()} цаг ${user.user.createdAt.getMinutes()} минут`;
     const embed = new MessageEmbed()
-      .setTitle(`${user.user.username} гишүүний мэдээлэл`)
       .setColor(`#679ad8`)
+      .setFooter("© 2022 14K")
       .setThumbnail(user.user.displayAvatarURL({ dynamic: true }))
       .addFields(
         {
@@ -41,12 +40,12 @@ module.exports = {
           inline: true,
         },
         {
-          name: "#️⃣ Арын дугаар",
+          name: "Арын дугаар",
           value: `\`\`\`#${user.user.discriminator}\`\`\``,
           inline: true,
         },
         {
-          name: "🆔 АИДИ",
+          name: "ID",
           value: `\`\`\`${user.user.id}\`\`\``,
           inline: false,
         },

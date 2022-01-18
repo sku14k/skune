@@ -3,7 +3,6 @@ const db = require("quick.db");
 
 module.exports = {
   name: "bal",
-  description: "gets the balance of a user",
   async execute(message, args) {
     let prefix;
     let prefixes = await db.fetch(`prefix_${message.guild.id}`);
@@ -20,7 +19,7 @@ module.exports = {
           color: "#679ad8",
           description: `\`\`\`Та эхлээд банканд данс нээлгэх ёстой. ${prefix}start гэж бичсэнээр данс нээгдэнэ.\`\`\``,
           footer: {
-            text: "© 2021. 14K",
+            text: "© 2022 14K",
           },
         },
       });
@@ -32,7 +31,7 @@ module.exports = {
           color: "#679ad8",
           description: `\`\`\`Танд ${bal} ширхэг skune зоос байна.\`\`\``,
           footer: {
-            text: "© 2021. 14K",
+            text: "© 2022 14K",
           },
         },
       });

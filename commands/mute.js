@@ -26,7 +26,18 @@ module.exports = {
       message.mentions.members.first() ||
       message.guild.members.cache.get(args[0]);
 
-    if (!Member) return;
+    if (!Member) return message
+    .reply({
+      embed: {
+        color: "#679ad8",
+        description: `\`\`\`${prefix}mute [@Хэрэглэгч]\`\`\``,
+        footer: {
+          text: "© 2022 14K",
+        },
+      },
+    })
+    .then((m) => m.delete({ timeout: 60000 }))
+    .then(message.delete({ timeout: 60000 }));
 
     const role = message.guild.roles.cache.find(
       (role) => role.name.toLowerCase() === "дуугүй"
@@ -58,8 +69,11 @@ module.exports = {
       return message
         .reply({
           embed: {
-            color: "#E60000",
-            description: `\`\`\`${Member.displayName} дуугүй болчихсон байна.\`\`\``,
+            color: "#679ad8",
+            description: `\`\`\`${Member.displayName} хэрэглэгч чат бичих эрхгүй.\`\`\``,
+            footer: {
+              text: "© 2022 14K",
+            },
           },
         })
         .then((m) => m.delete({ timeout: 15000 }))
@@ -69,8 +83,11 @@ module.exports = {
     message
       .reply({
         embed: {
-          color: "#4CBB17",
-          description: `\`\`\`${Member.displayName} дуугүй боллоо.\`\`\``,
+          color: "#679ad8",
+          description: `\`\`\`${Member.displayName} хэрэглэгчийн чат бичих эрхийг хураалаа.\`\`\``,
+          footer: {
+            text: "© 2022 14K",
+          },
         },
       })
       .then((m) => m.delete({ timeout: 15000 }))

@@ -3,13 +3,13 @@ const fs = require("fs");
 const db = require("quick.db");
 const rdb = require("./reconDB");
 const words = require("./as.json");
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 const client = new Discord.Client();
-require('dotenv-flow').config();
+require("dotenv-flow").config();
 
 const config = {
   token: process.env.TOKEN,
-  owner: process.env.OWNER
+  owner: process.env.OWNER,
 };
 
 const { Player } = require("discord-player");
@@ -47,14 +47,14 @@ client.on("message", async (message) => {
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
- 
+
   if (!message.client.commands.has(command))
     return message.reply({
       embed: {
-        color: "#ff0000",
-        description: `\`\`\`Таны бичсэн команд үсгийн алдаатай эсвэл олдоогүй тул та <${prefix}help> гэж бичсэнээр тусламж авах боломжтой.\`\`\``,
+        color: "#679ad8",
+        description: `\`\`\`Команд үсгийн алдаатай эсвэл олдоогүй тул та <${prefix}help> гэж бичсэнээр тусламж авах боломжтой.\`\`\``,
         footer: {
-          text: "© 2021. 14K",
+          text: `© 2022 14K`,
         },
       },
     });
@@ -64,10 +64,10 @@ client.on("message", async (message) => {
     console.error(error);
     message.reply({
       embed: {
-        color: "#FF0000",
-        description: `\`\`\`Таны ажиллуулах гэсэн команд засвартай байгаа тул ажиллаж чадсангүй.\`\`\``,
+        color: "#679ad8",
+        description: `\`\`\`Команд засвартай байгаа тул ажиллахгүй.\`\`\``,
         footer: {
-          text: "© 2021. 14K",
+          text: "© 2022 14K",
         },
       },
     });
@@ -89,9 +89,9 @@ client.on("message", async (message) => {
       message.reply({
         embed: {
           color: "#679ad8",
-          description: `\`\`\`Сервер дээрх командын угтвар тэмдэг <${prefix}> дээр тохируулагдсан байна.\`\`\``,
+          description: `\`\`\`Командын угтвар тэмдэг <${prefix}> дээр тохируулагдсан байна.\`\`\``,
           footer: {
-            text: "© 2021. 14K",
+            text: "© 2022 14K",
           },
         },
       });
@@ -101,19 +101,19 @@ client.on("message", async (message) => {
       message.reply({
         embed: {
           color: "#679ad8",
-          title: "Хэрэглэх заавар",
-          description: `Намайг сонгон хэрэглэж байгаа танд баярлалаа`,
+          title: "Ашиглах заавар",
+          description: `[black14k.tk](https://black14k.tk)`,
           fields: [
             {
               name: "Сервер удирдах",
               value: `\`\`\`${prefix}help server\`\`\``,
               inline: true,
             },
-            {
-              name: 'Дуу тоглуулах',
-              value: `\`\`\`${prefix}help music\`\`\``,
-              inline: true
-            },
+            // {
+            //   name: "Дуу тоглуулах",
+            //   value: `\`\`\`${prefix}help music\`\`\``,
+            //   inline: true,
+            // },
             {
               name: "Нэмэлт",
               value: `\`\`\`${prefix}help extra\`\`\``,
@@ -121,12 +121,12 @@ client.on("message", async (message) => {
             },
             {
               name: "Командын угтвар тэмдэг солих",
-              value: `\`\`\`${prefix}setprefix [Шинэ Командын Угтвар Тэмдэг]\`\`\``,
+              value: `\`\`\`${prefix}setprefix [Командын Угтвар Тэмдэг]\`\`\``,
               inline: false,
             },
           ],
           footer: {
-            text: "© 2021. 14K",
+            text: "© 2022 14K",
           },
         },
       });
@@ -155,26 +155,24 @@ client.on("guildCreate", async (guild) => {
     ) {
       found = true;
       let embed = new Discord.MessageEmbed()
-        .setTitle("skune амжилттай дискорд серверт нэгдлээ")
-        .setDescription(
-          "Намайг сонгон хэрэглэж байгаа танд баярлалаа"
-        )
+        .setTitle("Skune амжилттай дискорд серверт нэгдлээ")
+        .setDescription(`[black14k.tk](https://black14k.tk)`)
         .addFields(
           {
-            name: "Хэрэглэх заавар",
+            name: "Ашиглах заавар",
             value: `\`\`\`Та <skunehelp> гэж бичсэнээр тусламж авах боломжтой\`\`\``,
           },
           {
             name: "Командын угтвар тэмдэг солих",
-            value: `\`\`\`${prefix}setprefix [Шинэ Командын Угтвар Тэмдэг]\`\`\``,
+            value: `\`\`\`${prefix}setprefix [Командын Угтвар Тэмдэг]\`\`\``,
           },
           {
             name: "Дэлгэрэнгүй",
-            value: `\`\`\`Бусад дэлгэрэнгүй мэдээллийг https://skunebot.com/ -оос авна уу.\`\`\``,
+            value: `\`\`\`Бусад дэлгэрэнгүй мэдээллийг https://skune.tk/ -оос авна уу.\`\`\``,
           }
         )
         .setColor("#679ad8")
-        .setFooter("© 2021. 14K");
+        .setFooter("© 2022 14K");
       return channel.send(embed);
     }
   });
@@ -200,7 +198,7 @@ client.on("guildMemberAdd", (member) => {
         value: `\`\`\`${datestring}\`\`\``,
       }
     )
-    .setFooter("© 2021. 14K")
+    .setFooter("© 2022 14K")
     .setAuthor(
       `Тавтай морил, ${member.user.username}`,
       client.user.displayAvatarURL()
@@ -246,7 +244,7 @@ client.on("guildMemberRemove", (member) => {
         }\`\`\``,
       }
     )
-    .setFooter("© 2021. 14K");
+    .setFooter("© 2022 14K");
 
   client.channels.cache.get(chx).send(wembed);
 });

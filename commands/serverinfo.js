@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 
 module.exports = {
   name: "serverinfo",
-  description: "Энэ комманд нь серверийн мэдээлэлийг харуулдаг.",
   execute(message, args) {
     const { guild } = message;
 
@@ -26,9 +25,9 @@ module.exports = {
     };
 
     const embed = new Discord.MessageEmbed()
-      .setTitle(`Серверийн мэдээлэл :information_source:`)
       .setThumbnail(icon)
       .setColor("#679ad8")
+      .setFooter("© 2022 14K")
       .addFields(
         {
           name: "Серверийн нэр",
@@ -41,7 +40,7 @@ module.exports = {
           inline: true,
         },
         {
-          name: "Сервер АИДИ",
+          name: "Сервер ID",
           value: `\`\`\`${guild.id}\`\`\``,
           inline: true,
         },
@@ -50,25 +49,25 @@ module.exports = {
           value: `\`\`\`${year} оны ${month}-р сарын ${date}\`\`\``,
           inline: false,
         },
-        {
-          name: "Бүс",
-          value: `\`\`\`${region}\`\`\``,
-          inline: true,
-        },
+        // {
+        //   name: "Бүс",
+        //   value: `\`\`\`${region}\`\`\``,
+        //   inline: true,
+        // },
         {
           name: "Нийт гишүүд",
           value: `\`\`\`${memberCount}\`\`\``,
           inline: true,
         },
-        {
-          name: "Сүлжээнд одоо идэвхтэй байгаа гишүүд",
-          value: `\`\`\`${
-            message.guild.members.cache.filter(
-              (m) => m.user.presence.status == "online"
-            ).size
-          }\`\`\``,
-          inline: false,
-        },
+        // {
+        //   name: "Сүлжээнд одоо идэвхтэй байгаа гишүүд",
+        //   value: `\`\`\`${
+        //     message.guild.members.cache.filter(
+        //       (m) => m.user.presence.status == "online"
+        //     ).size
+        //   }\`\`\``,
+        //   inline: false,
+        // },
         {
           name: "Нийт ангилал",
           value: `\`\`\`${
@@ -87,7 +86,7 @@ module.exports = {
           value: `\`\`\`${
             message.guild.channels.cache.filter((c) => c.type === "text").size
           }\`\`\``,
-          inline: false,
+          inline: true,
         },
         {
           name: "Нийт дуут суваг",
@@ -102,10 +101,10 @@ module.exports = {
           inline: true,
         },
         {
-          name: "Ажил үүрэгүүд",
-          value: `\`\`\`${rolemap
-            .filter((x) => x !== "@everyone")
-            .join(", ")}\`\`\``,
+          name: "Сервер тохируулгийн түвшин",
+          value: `\`\`\`${
+            verificationLevels[message.guild.verificationLevel]
+          }\`\`\``,
           inline: false,
         },
         {
@@ -123,10 +122,10 @@ module.exports = {
           inline: true,
         },
         {
-          name: "Сервер тохируулгийн түвшин",
-          value: `\`\`\`${
-            verificationLevels[message.guild.verificationLevel]
-          }\`\`\``,
+          name: "Ажил үүрэгүүд",
+          value: `\`\`\`${rolemap
+            .filter((x) => x !== "@everyone")
+            .join(", ")}\`\`\``,
           inline: false,
         }
       );

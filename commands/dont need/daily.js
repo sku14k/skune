@@ -5,7 +5,6 @@ const cooldown = new Set();
 
 module.exports = {
   name: "daily",
-  description: "provides the user with coins daily",
   execute(message, args) {
     if (db.get(`user_${message.author.id}.bal`) === null) {
       message.reply({

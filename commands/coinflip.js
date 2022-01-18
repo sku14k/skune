@@ -7,18 +7,39 @@ module.exports = {
 
     var output = choices[Math.floor(Math.random() * choices.length)];
 
-    message
-      .reply({
-        embed: {
-          title: `Зоос шидэх`,
-          color: "#679ad8",
-          description: `\`\`\`${message.author.tag} та ${output} буулгалаа\`\`\``,
-          footer: {
-            text: "© 2021. 14K",
+    if (output == "тоо") {
+      message
+        .reply({
+          embed: {
+            color: "#679ad8",
+            description: `\`\`\`${message.author.tag} та тоо буулгалаа\`\`\``,
+            image: {
+              url: "https://imgur.com/eo773Jv.png",
+            },
+            footer: {
+              text: "© 2022 14K",
+            },
           },
-        },
-      })
-      .then((m) => m.delete({ timeout: 30000 }))
-      .then(message.delete({ timeout: 30000 }));
+        })
+        .then((m) => m.delete({ timeout: 30000 }))
+        .then(message.delete({ timeout: 30000 }));
+    }
+    if (output == "сүлд") {
+      message
+        .reply({
+          embed: {
+            color: "#679ad8",
+            description: `\`\`\`${message.author.tag} та сүлд буулгалаа\`\`\``,
+            image: {
+              url: "https://i.imgur.com/ybuX7F8.png",
+            },
+            footer: {
+              text: "© 2022 14K",
+            },
+          },
+        })
+        .then((m) => m.delete({ timeout: 30000 }))
+        .then(message.delete({ timeout: 30000 }));
+    }
   },
 };

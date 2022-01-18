@@ -4,7 +4,6 @@ const db = require("quick.db");
 
 module.exports = {
   name: "unmute",
-  description: "Энэ комманд нь тухайн хүнийг хэлтэй болгох үүрэгтэй.",
   /**
    * @param {Message} message
    */
@@ -18,35 +17,9 @@ module.exports = {
       prefix = prefixes;
     }
 
-    if (!message.member.hasPermission("MANAGE_MESSAGES"))
-      return message
-        .reply({
-          embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Танд энэ коммандыг ажиллуулах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) return;
 
-    if (!message.guild.me.hasPermission("MANAGE_MESSAGES"))
-      return message
-        .reply({
-          embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Надад энэ коммандыг ажиллуулх эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
+    if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return;
 
     const Member =
       message.mentions.members.first() ||
@@ -56,17 +29,10 @@ module.exports = {
       return message
         .reply({
           embed: {
-            color: "#FFFF00",
-            title: "Комманд ажиллуулах зөвлөмж :woman_tipping_hand:",
-            description: `\`\`\`Энэ комманд нь тухайн гишүүнийг хэлтэй болгох үүрэгтэй.\`\`\``,
-            fields: [
-              {
-                name: "Зөвлөмж",
-                value: `\`\`\`${prefix}unmute [Гишүүн] гэж бичсэнээр гишүүн хэлтэй болно.\`\`\``,
-              },
-            ],
+            color: "#679ad8",
+            description: `\`\`\`${prefix}unmute [@Хэрэглэгч]\`\`\``,
             footer: {
-              text: "© 2021. 14K",
+              text: "© 2022 14K",
             },
           },
         })
@@ -83,10 +49,9 @@ module.exports = {
       .reply({
         embed: {
           color: "#679ad8",
-          title: "Комманд амжилттай ажиллаа :white_check_mark:",
-          description: `\`\`\`${Member.displayName} гишүүнийг амжилттай хэлтэй болголоо.\`\`\``,
+          description: `\`\`\`${Member.displayName} хэрэглэгчд чат бичих эрх олголоо.\`\`\``,
           footer: {
-            text: "© 2021. 14K",
+            text: "© 2022 14K",
           },
         },
       })

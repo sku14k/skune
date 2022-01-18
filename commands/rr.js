@@ -13,35 +13,8 @@ module.exports = {
       prefix = prefixes;
     }
 
-    if (!message.member.hasPermission("MANAGE_MEMBERS"))
-      return message
-        .reply({
-          embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Танд энэ коммандыг ажиллуулах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
-
-    if (!message.guild.me.hasPermission("MANAGE_MEMBERS"))
-      return message
-        .reply({
-          embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Надад энэ коммандыг ажиллуулх эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
+    if (!message.member.hasPermission("MANAGE_MEMBERS")) return;
+    if (!message.guild.me.hasPermission("MANAGE_MEMBERS")) return;
 
     const user = message.mentions.members.first();
 
@@ -49,17 +22,10 @@ module.exports = {
       return message
         .reply({
           embed: {
-            color: "#FFFF00",
-            title: "Комманд ажиллуулах зөвлөмж :woman_tipping_hand:",
-            description: `\`\`\`Энэ комманд нь тухайн гишүүнд олгосон ажил үүргийг хураах үүрэгтэй.\`\`\``,
-            fields: [
-              {
-                name: "Зөвлөмж",
-                value: `\`\`\`${prefix}rr [Гишүүн] [Ажил Үүрэг] гэж бичсэнээр гишүүнээс ажил үүргийг хураана.\`\`\``,
-              },
-            ],
+            color: "#679ad8",
+            description: `\`\`\`${prefix}rr [@Хэрэглэгч] [Ажил Үүрэг]\`\`\``,
             footer: {
-              text: "© 2021. 14K",
+              text: "© 2022 14K",
             },
           },
         })
@@ -70,26 +36,26 @@ module.exports = {
       (r) => r.name === args.slice(1).join(" ")
     );
 
-    if (!role)
-      return message
-        .reply({
-          embed: {
-            color: "#FFFF00",
-            title: "Комманд ажиллуулах зөвлөмж :woman_tipping_hand:",
-            description: `\`\`\`Энэ комманд нь тухайн гишүүнд олгосон ажил үүргийг хураах үүрэгтэй.\`\`\``,
-            fields: [
-              {
-                name: "Зөвлөмж",
-                value: `\`\`\`${prefix}rr [Гишүүн] [Ажил Үүрэг] гэж бичсэнээр гишүүнээс ажил үүргийг хураана.\`\`\``,
-              },
-            ],
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 60000 }))
-        .then(message.delete({ timeout: 60000 }));
+    if (!role) return;
+    //  message
+    //     .reply({
+    //       embed: {
+    //         color: "#FFFF00",
+    //         title: "Комманд ажиллуулах зөвлөмж :woman_tipping_hand:",
+    //         description: `\`\`\`Энэ комманд нь тухайн гишүүнд олгосон ажил үүргийг хураах үүрэгтэй.\`\`\``,
+    //         fields: [
+    //           {
+    //             name: "Зөвлөмж",
+    //             value: `\`\`\`${prefix}rr [Гишүүн] [Ажил Үүрэг] гэж бичсэнээр гишүүнээс ажил үүргийг хураана.\`\`\``,
+    //           },
+    //         ],
+    //         footer: {
+    //           text: "© 2021. 14K",
+    //         },
+    //       },
+    //     })
+    //     .then((m) => m.delete({ timeout: 60000 }))
+    //     .then(message.delete({ timeout: 60000 }));
 
     // if(user.roles.cache.has(role.id)) return message.reply({
     //     embed: {
@@ -107,10 +73,9 @@ module.exports = {
         .reply({
           embed: {
             color: "#679ad8",
-            title: "Комманд амжилттай ажиллаа :white_check_mark:",
-            description: `\`\`\`${user.user.tag} гишүүнээс амжилттай ${role.name} гэсэн ажил үүргийг хураалаа.\`\`\``,
+            description: `\`\`\`${user.user.tag} хэрэглэгчээс амжилттай ${role.name} ажил үүргийг хураалаа.\`\`\``,
             footer: {
-              text: "© 2021. 14K",
+              text: "© 2022 14K",
             },
           },
         })

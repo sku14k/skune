@@ -4,7 +4,6 @@ const db = require("quick.db");
 
 module.exports = {
   name: "weather",
-  description: "Энэ комманд нь тухайн улсын цаг агаарын мэдээллийг харуулах үүрэгтэй.",
   async execute(message, args) {
     let prefix;
     let prefixes = await db.fetch(`prefix_${message.guild.id}`);
@@ -24,17 +23,10 @@ module.exports = {
           return message
             .reply({
               embed: {
-                color: "#FFFF00",
-                title: "Комманд ажиллуулах зөвлөмж :woman_tipping_hand:",
-                description: `\`\`\`Энэ комманд нь тухайн хотын цаг агаарыг харуулах үүрэгтэй.\`\`\``,
-                fields: [
-                  {
-                    name: "Зөвлөмж",
-                    value: `\`\`\`${prefix}weather [Хот] гэж бичсэнээр хотын цаг агаарыг харах болно.\`\`\``,
-                  },
-                ],
+                color: "#679ad8",
+                description: `\`\`\`${prefix}weather [Хот]\`\`\``,
                 footer: {
-                  text: "© 2021. 14K",
+                  text: "© 2022 14K",
                 },
               },
             })
@@ -45,11 +37,10 @@ module.exports = {
           return message
             .reply({
               embed: {
-                color: "#FF0000",
-                title: "Алдаа гарлаа :x:",
-                description: `\`\`\`Таны дурдсан хот олдсонгүй.\`\`\``,
+                color: "#679ad8",
+                description: `\`\`\`Дурдсан хот олдсонгүй.\`\`\``,
                 footer: {
-                  text: "© 2021. 14K",
+                  text: "© 2022 14K",
                 },
               },
             })
@@ -61,6 +52,7 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed()
           .setAuthor(current.observationpoint)
+          .setFooter("© 2022 14K")
           .setDescription(`> ${current.skytext}`)
           .setThumbnail(current.imageUrl)
           .setColor("#679ad8");

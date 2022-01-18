@@ -3,8 +3,6 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "corona",
-  description:
-    "Энэ комманд нь коронавирусын тухай мэдээллийг харуулах үүрэгтэй.",
   async execute(message, args) {
     const baseUrl = "https://corona.lmao.ninja/v2";
 
@@ -21,32 +19,31 @@ module.exports = {
 
     const first = args[0];
     const embed = new MessageEmbed()
-      .setTitle(
-        args[0]
-          ? `${
-              first.charAt(0).toUpperCase() + first.slice(1)
-            } улсын коронавирусын тухай мэдээлэл ℹ`
-          : "Дэлхийн нийтийн коронавирусын тухай мэдээлэл ℹ"
-      )
+      // .setTitle(
+      //   args[0]
+      //     ? `${
+      //         first.charAt(0).toUpperCase() + first.slice(1)
+      //       } улсын коронавирусын тухай мэдээлэл ℹ`
+      //     : "Дэлхийн нийтийн коронавирусын тухай мэдээлэл ℹ"
+      // )
       .setColor("#679ad8")
+      .setFooter("© 2022 14K")
       .setThumbnail(
-        args[0]
-          ? corona.countryInfo.flag
-          : "https://i.giphy.com/KS5cTZSqkUOSykR1fF.gif"
+        args[0] ? corona.countryInfo.flag : "https://i.imgur.com/hJ6hT8O.jpg"
       )
       .addFields(
         {
-          name: "Нийт өвчилсөн",
+          name: "Өвчилсөн",
           value: `\`\`\`${corona.cases.toLocaleString()}\`\`\``,
           inline: true,
         },
         {
-          name: "Нийт нас барсан",
+          name: "Нас баралт",
           value: `\`\`\`${corona.deaths.toLocaleString()}\`\`\``,
           inline: true,
         },
         {
-          name: "Нийт эдгэрсэн",
+          name: "Эдгэрсэн",
           value: `\`\`\`${corona.recovered.toLocaleString()}\`\`\``,
           inline: true,
         },
@@ -78,7 +75,9 @@ module.exports = {
           inline: true,
         }
       );
-
-    await message.channel.send(embed);
+    await message.channel
+      .send(embed)
+      .then((m) => m.delete({ timeout: 60000 }))
+      .then(message.delete({ timeout: 60000 }));
   },
 };

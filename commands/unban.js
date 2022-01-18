@@ -3,9 +3,6 @@ const db = require("quick.db");
 
 module.exports = {
   name: "unban",
-  description:
-    "Энэ комманд нь тухайн гишүүнд серверээс тавьсан хоригийг цуцлах үүрэгтэй.",
-
   async execute(message, args) {
     let prefix;
     let prefixes = await db.fetch(`prefix_${message.guild.id}`);
@@ -16,35 +13,9 @@ module.exports = {
       prefix = prefixes;
     }
 
-    if (!message.member.hasPermission("BAN_MEMBERS"))
-      return message
-        .reply({
-          embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Танд энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
+    if (!message.member.hasPermission("BAN_MEMBERS")) return;
 
-    if (!message.guild.me.hasPermission("BAN_MEMBERS"))
-      return message
-        .reply({
-          embed: {
-            color: "#FF0000",
-            title: "Алдаа гарлаа :x:",
-            description: `\`\`\`Надад энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
-            footer: {
-              text: "© 2021. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
+    if (!message.guild.me.hasPermission("BAN_MEMBERS")) return;
 
     let reason = args.slice(1).join(" ");
 
@@ -55,17 +26,10 @@ module.exports = {
       return message
         .reply({
           embed: {
-            color: "#FFFF00",
-            title: "Комманд ажиллуулах зөвлөгөө :woman_tipping_hand:",
-            description: `\`\`\`Энэ комманд нь тухайн гишүүний серверээс тавьсан хоригийг цуцлах үүрэгтэй.\`\`\``,
-            fields: [
-              {
-                name: "Зөвлөмж",
-                value: `\`\`\`${prefix}unban [Гишүүн] [Шалтгаан эсвэл хоосон] гэж бичсэнээр тухайн гишүүний серверээс тавьсан хоригийг цуцлана.\`\`\``,
-              },
-            ],
+            color: "#679ad8",
+            description: `\`\`\`${prefix}unban [@Хэрэглэгч] [Шалтгаан]\`\`\``,
             footer: {
-              text: "© 2021. 14K",
+              text: "© 2022 14K",
             },
           },
         })
@@ -77,11 +41,10 @@ module.exports = {
         return message
           .reply({
             embed: {
-              color: "#FF0000",
-              title: "Алдаа гарлаа :x:",
-              description: `\`\`\`Серверээс хориг тавьсан хүн олдоогүй тул комманд ажиллаж чадсангүй.\`\`\``,
+              color: "#679ad8",
+              description: `\`\`\`Серверээс хориг тавьсан хэрэглэгч олдсонгүй.\`\`\``,
               footer: {
-                text: "© 2021. 14K",
+                text: "© 2022 14K",
               },
             },
           })
@@ -94,10 +57,9 @@ module.exports = {
             .reply({
               embed: {
                 color: "#679ad8",
-                title: "Комманд амжилттай ажиллаа :white_check_mark:",
-                description: `\`\`\`${u.user.username} гишүүний серверээс тавьсан хоригийг амжилттай аргалаа.\`\`\``,
+                description: `\`\`\`${u.user.username} хэрэглэгчийн серверээс тавьсан хоригийг гаргалаа.\`\`\``,
                 footer: {
-                  text: "© 2021. 14K",
+                  text: "© 2022 14K",
                 },
               },
             })
@@ -109,10 +71,9 @@ module.exports = {
             .reply({
               embed: {
                 color: "#679ad8",
-                title: "Комманд амжилттай ажиллаа :white_check_mark:",
-                description: `\`\`\`${u.user.username} гишүүний серверээс тавьсан АИДИ хоригийг амжилттай аргалаа.\`\`\``,
+                description: `\`\`\`${u.user.username} хэрэглэгчийн серверээс тавьсан ID хоригийг гаргалаа.\`\`\``,
                 footer: {
-                  text: "© 2021. 14K",
+                  text: "© 2022 14K",
                 },
               },
             })
@@ -123,11 +84,10 @@ module.exports = {
           return message
             .reply({
               embed: {
-                color: "#FF0000",
-                title: "Алдаа гарлаа :x:",
-                description: `\`\`\`${u.user.username} гишүүнд серверээс хориг тавиагүй байсан тул комманд ажиллаж чадсангүй.\`\`\``,
+                color: "#679ad8",
+                description: `\`\`\`${u.user.username} хэрэглэгчд серверээс хориг тавиагүй байна.\`\`\``,
                 footer: {
-                  text: "© 2021. 14K",
+                  text: "© 2022 14K",
                 },
               },
             })
