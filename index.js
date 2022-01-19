@@ -30,7 +30,7 @@ for (const file of commandFiles) {
 
 client.on("ready", () => {
   console.log(`${client.user.username} аслаа.`);
-  client.user.setActivity(`skunehelp | skunebot.com`);
+  client.user.setActivity(`skunehelp`);
 });
 
 client.on("message", async (message) => {
