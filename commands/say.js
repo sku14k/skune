@@ -1,42 +1,41 @@
-const Discord = require("discord.js");
-const db = require("quick.db");
+const { Message, MessageEmbed } = require('discord.js')
+const db = require('quick.db')
 
 module.exports = {
-  name: "say",
-  async execute(message, args) {
-    let prefix;
-    let prefixes = await db.fetch(`prefix_${message.guild.id}`);
+  name: 'say',
+  async execute(client, message, args) {
+    let prefix = await db.fetch(`prefix_${message.guild.id}`)
 
-    if (prefixes == null) {
-      prefix = "skune";
+    if (prefix == null) {
+      prefix = 'skune'
     } else {
-      prefix = prefixes;
+      prefix = prefix
+    }
+    if (!message.member.permissions.has('MANAGE_MESSAGES')) {
+      const clearError = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Танд say командыг ашиглах permission байхгүй байна.\`\`\``)
+      return message.channel.send({ embeds: [clearError] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    } else if (!message.guild.me.permissions.has('MANAGE_MESSAGES')) {
+      const permsEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Надад say командыг ажиллуулах permission байхгүй байна.\`\`\``)
+      return message.channel.send({ embeds: [permsEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
     }
 
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) return;
-
-    if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return;
-
-    if (!args[0])
-      return message
-        .reply({
-          embed: {
-            color: "#FFFF00",
-            description: `\`\`\`${prefix}say [Мессеж] эсвэл ${prefix}say embed [Мессеж]\`\`\``,
-            footer: {
-              text: "© 2022 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 60000 }))
-        .then(message.delete({ timeout: 60000 }));
+    if (!args[0]) {
+      const helpEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`${prefxi}say [Мессеж]\n${prefix}say embed [Мессеж]\`\`\``)
+      return message.channel.send({ embeds: [helpEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 60000) })
+    }
 
     if (args[0].toLowerCase() === "embed") {
-      const embed = new Discord.MessageEmbed()
-        .setColor("#679ad8")
+      const embed = new MessageEmbed()
+        .setColor('#679ad8')
         .setDescription(args.slice(1).join(" "));
 
-      message.channel.send(embed).then(message.delete());
+      message.channel.send({ embeds: [embed] }).then(message.delete());
     } else {
       const sayMessage = args.join(" ");
       message.delete().catch((err) => console.log(err));

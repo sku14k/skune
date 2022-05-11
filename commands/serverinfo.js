@@ -1,135 +1,180 @@
-const Discord = require("discord.js");
+const { Client, Message, Interaction, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
+const paginationEmbed = require('discordjs-button-pagination')
 
 module.exports = {
-  name: "serverinfo",
-  execute(message, args) {
-    const { guild } = message;
+  name: 'serverinfo',
+  async execute(client, message, args) {
+    const { guild } = message
+    const { members, memberCount, description, emojis, stickers, channels } = guild
 
-    let rolemap = [];
-    guild.roles.cache.each((role) => {
-      rolemap.push(role.name);
-    });
+    const owner = await guild.fetchOwner()
+    const threads = channels.cache.filter((c) => c.type === 'GUILD_NEWS_THREAD' && 'GUILD_PRIVATE_THREAD' && 'GUILD_PUBLIC_THREAD').size
 
-    const { name, region, memberCount, owner } = guild;
-    const icon = guild.iconURL();
-    let [month, date, year] = message.guild.createdAt
-      .toLocaleDateString("en-US")
-      .split("/");
-
+    const nitroTier = {
+      NONE: 'Байхгүй',
+    }
+    const serverDescription = {
+      null: 'Байхгүй'
+    }
     const verificationLevels = {
       NONE: "Энгийн",
       LOW: "Бага",
       MEDIUM: "Дунд",
       HIGH: "Өндөр",
       VERY_HIGH: "Маш өндөр",
-    };
+    }
 
-    const embed = new Discord.MessageEmbed()
-      .setThumbnail(icon)
-      .setColor("#679ad8")
-      .setFooter("© 2022 14K")
+    let rolemap = []
+    guild.roles.cache.each((role) => { rolemap.push(role.name) })
+
+    let [month, date, year] = message.guild.createdAt.toLocaleDateString('en-US').split('/')
+
+    const serverInfo = new MessageEmbed()
+      .setThumbnail(guild.iconURL({ dynamic: true }))
+      .setColor('#679ad8')
       .addFields(
         {
-          name: "Серверийн нэр",
-          value: `\`\`\`${name}\`\`\``,
+          name: 'Серверийн нэр',
+          value: `\`\`\`${guild.name}\`\`\``,
           inline: false,
         },
         {
-          name: "Сервер эзэмшигч",
-          value: `\`\`\`${guild.owner.user.tag}\`\`\``,
+          name: 'Сервер эзэмшигч',
+          value: `\`\`\`${owner.user.tag}\`\`\``,
           inline: true,
         },
         {
-          name: "Сервер ID",
+          name: 'Сервер ID',
           value: `\`\`\`${guild.id}\`\`\``,
           inline: true,
         },
         {
-          name: "Сервер нээгдсэн огноо",
+          name: 'Сервер нээгдсэн огноо',
           value: `\`\`\`${year} оны ${month}-р сарын ${date}\`\`\``,
           inline: false,
         },
-        // {
-        //   name: "Бүс",
-        //   value: `\`\`\`${region}\`\`\``,
-        //   inline: true,
-        // },
         {
-          name: "Нийт гишүүд",
-          value: `\`\`\`${memberCount}\`\`\``,
-          inline: true,
-        },
-        // {
-        //   name: "Сүлжээнд одоо идэвхтэй байгаа гишүүд",
-        //   value: `\`\`\`${
-        //     message.guild.members.cache.filter(
-        //       (m) => m.user.presence.status == "online"
-        //     ).size
-        //   }\`\`\``,
-        //   inline: false,
-        // },
-        {
-          name: "Нийт ангилал",
-          value: `\`\`\`${
-            message.guild.channels.cache.filter((c) => c.type === "category")
-              .size
-          }\`\`\``,
-          inline: true,
-        },
-        {
-          name: "Нийт ажил үүрэг",
-          value: `\`\`\`${message.guild.roles.cache.size}\`\`\``,
-          inline: true,
-        },
-        {
-          name: "Нийт текст суваг",
-          value: `\`\`\`${
-            message.guild.channels.cache.filter((c) => c.type === "text").size
-          }\`\`\``,
-          inline: true,
-        },
-        {
-          name: "Нийт дуут суваг",
-          value: `\`\`\`${
-            message.guild.channels.cache.filter((c) => c.type === "voice").size
-          }\`\`\``,
-          inline: true,
-        },
-        {
-          name: "Нийт эможи",
-          value: `\`\`\`${message.guild.emojis.cache.size}\`\`\``,
-          inline: true,
-        },
-        {
-          name: "Сервер тохируулгийн түвшин",
-          value: `\`\`\`${
-            verificationLevels[message.guild.verificationLevel]
-          }\`\`\``,
+          name: 'Серверийн тайлбар',
+          value: `\`\`\`${serverDescription[description]}\`\`\``,
           inline: false,
         },
         {
-          name: "Нийт сервер өсгөгч",
-          value: `\`\`\`${message.guild.premiumSubscriptionCount}\`\`\``,
+          name: "Сервер тохируулгийн түвшин",
+          value: `\`\`\`${verificationLevels[message.guild.verificationLevel]}\`\`\``,
           inline: true,
         },
         {
           name: "Сервер баталгаажуулалт",
-          value: `\`\`\`${
-            message.guild.verified
-              ? `Баталгаажуулагдсан`
-              : `Баталгаажуулагдаагүй`
-          }\`\`\``,
+          value: `\`\`\`${message.guild.verified ? `Баталгаажуулагдсан` : `Баталгаажуулагдаагүй`}\`\`\``,
           inline: true,
         },
         {
-          name: "Ажил үүрэгүүд",
-          value: `\`\`\`${rolemap
-            .filter((x) => x !== "@everyone")
-            .join(", ")}\`\`\``,
-          inline: false,
-        }
-      );
+          name: 'Серверийн Nitro Tier',
+          value: `\`\`\`${nitroTier[guild.premiumTier.replace('TIER_', '')]}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Серверийн нийт Nitro Boost',
+          value: `\`\`\`${guild.premiumSubscriptionCount}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Серверийн Nitro Boosterүүд',
+          value: `\`\`\`${members.cache.filter((m) => m.premiumSince).size}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Нийт гишүүд',
+          value: `\`\`\`${memberCount}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Нийт хэрэглэгчид',
+          value: `\`\`\`${members.cache.filter((m) => !m.user.bot).size}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Нийт bot',
+          value: `\`\`\`${members.cache.filter((m) => m.user.bot).size}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Нийт ангилал',
+          value: `\`\`\`${channels.cache.filter((c) => c.type === 'GUILD_CATEGORY').size}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Нийт текст суваг',
+          value: `\`\`\`${channels.cache.filter((c) => c.type === 'GUILD_TEXT').size}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Нийт мэдээллийн суваг',
+          value: `\`\`\`${channels.cache.filter((c) => c.type === 'GUILD_NEWS').size}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Нийт thread',
+          value: `\`\`\`${threads}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Нийт дуут суваг',
+          value: `\`\`\`${channels.cache.filter((c) => c.type === 'GUILD_VOICE').size}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Нийт stage дуут суваг',
+          value: `\`\`\`${channels.cache.filter((c) => c.type === 'GUILD_STAGE_VOICE').size}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Нийт эможи',
+          value: `\`\`\`${emojis.cache.filter((e) => !e.animated).size}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Нийт хөдөлгөөнт эможи',
+          value: `\`\`\`${emojis.cache.filter((e) => e.animated).size}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Нийт sticker',
+          value: `\`\`\`${stickers.cache.size}\`\`\``,
+          inline: true,
+        },
+        {
+          name: 'Нийт role',
+          value: `\`\`\`${message.guild.roles.cache.size}\`\`\``,
+          inline: true,
+        },
+      )
 
-    message.channel.send(embed);
-  },
-};
+    const serverTwo = new MessageEmbed()
+      .setThumbnail(guild.iconURL({ dynamic: true }))
+      .setColor('#679ad8')
+      .setDescription(`\`\`\`Roleүүд:\n${rolemap.filter((x) => x !== '@everyone').join(', ')}\`\`\``)
+
+    const button1 = new MessageButton()
+      .setCustomId('previousbtn')
+      .setLabel('Өмнөх')
+      .setStyle('SECONDARY')
+
+    const button2 = new MessageButton()
+      .setCustomId('nextbtn')
+      .setLabel('Дараах')
+      .setStyle('SECONDARY')
+
+    pages = [
+      serverInfo,
+      serverTwo,
+    ]
+
+    buttonList = [
+      button1,
+      button2
+    ]
+
+    paginationEmbed(message, pages, buttonList)
+  }
+}

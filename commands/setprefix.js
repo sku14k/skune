@@ -1,46 +1,41 @@
-const db = require("quick.db");
+const { MessageEmbed } = require('discord.js')
+const db = require('quick.db')
 
 module.exports = {
-  name: "setprefix",
-  async execute(message, args) {
-    let prefix;
-    let prefixes = await db.fetch(`prefix_${message.guild.id}`);
+  name: 'setprefix',
+  async execute(client, message, args) {
+    let prefix = await db.fetch(`prefix_${message.guild.id}`)
 
-    if (prefixes == null) {
-      prefix = "skune";
+    if (prefix == null) {
+      prefix = 'skune'
     } else {
-      prefix = prefixes;
+      prefix = prefix
     }
 
-    if (!message.member.hasPermission("MANAGE_GUILD")) return;
+    if (!message.member.permissions.has('MANAGE_GUILD')) {
+      const permsError = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Танд setprefix командыг ашиглах permission байхгүй байна.\`\`\``)
+      return message.channel.send({ embeds: [permsError] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    } else if (!message.guild.me.permissions.has('MANAGE_GUILD')) {
+      const permsEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Надад setprefix командыг ажиллуулах permission байхгүй байна.\`\`\``)
+      return message.channel.send({ embeds: [permsEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    }
 
-    if (!args[0])
-      return message
-        .reply({
-          embed: {
-            color: "#679ad8",
-            description: `\`\`\`${prefix}setprefix [Командын Угтвар Тэмдэг]\`\`\``,
-            footer: {
-              text: "© 2022 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 60000 }))
-        .then(message.delete({ timeout: 60000 }));
+    if (!args[0]) {
+      const helpEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`${prefix}setprefix [Командын Угтвар Тэмдэг]\`\`\``)
+      return message.channel.send({ embeds: [helpEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 60000) })
+    }
 
-    await db.set(`prefix_${message.guild.id}`, args[0]);
+    await db.set(`prefix_${message.guild.id}`, args[0])
 
-    message
-      .reply({
-        embed: {
-          color: "#679ad8",
-          description: `\`\`\`Команд тэмдэг ${args[0]} болж өөрчлөгдлөө.\`\`\``,
-          footer: {
-            text: "© 2022 14K",
-          },
-        },
-      })
-      .then((m) => m.delete({ timeout: 15000 }))
-      .then(message.delete({ timeout: 15000 }));
-  },
-};
+    const prefixEmbed = new MessageEmbed()
+      .setColor('#679ad8')
+      .setDescription(`\`\`\`Командын угтвар тэмдэг ${args[0]} болж өөрчлөгдлөө.\`\`\``)
+    message.channel.send({ embeds: [prefixEmbed] })
+  }
+}

@@ -1,17 +1,20 @@
-const Discord = require("discord.js");
-const randomPuppy = require("random-puppy");
+const { Client, MessageEmbed } = require('discord.js')
+const axios = require('axios')
 
 module.exports = {
-  name: "meme",
-  async execute(message, args) {
-      const subReddits = ["meme", "memes"];
-      const random = subReddits[Math.floor(Math.random() * subReddits.length)];
+  name: 'meme',
+  async execute(client, message, args) {
+    let res = await axios.default.get(`https://www.reddit.com/r/memes/random/.json`)
 
-      const img = await randomPuppy(random);
+    if (!res || !res.data || !res.data.length) return
 
-      const embed = new Discord.MessageEmbed()
-        .setColor("#679ad8")
-        .setImage(img)
-        .setFooter("© 2022 14K")
-  },
-};
+    res = res.data[0].data.children[0].data
+
+    const memeEmbed = new MessageEmbed()
+      .setTitle(res.title)
+      .setColor('#679ad8')
+      .setImage(res.url)
+      .setURL(`https://www.reddit.com${res.permalink}`)
+    message.channel.send({ embeds: [memeEmbed] })
+  }
+}

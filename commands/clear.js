@@ -1,56 +1,32 @@
-const Discord = require("discord.js");
-const db = require("quick.db");
+const { MessageEmbed } = require('discord.js')
 
 module.exports = {
-  name: "clear",
-  async execute(message, args) {
-    let prefix;
-    let prefixes = await db.fetch(`prefix_${message.guild.id}`);
+    name: 'clear',
+    voiceChannel: true,
+    async execute(client, message) {
+        const queue = client.player.getQueue(message.guild.id)
 
-    if (prefixes == null) {
-      prefix = "skune";
-    } else {
-      prefix = prefixes;
+        if (!queue || !queue.playing) {
+            const queueEmbed = new MessageEmbed()
+                .setColor('#679ad8')
+                .setDescription(`\`\`\`Дуу тоглоогүй тул дуу тоглуулах жагсаалтаас хасах боломжгүй.\`\`\``)
+            return message.channel.send({ embeds: [queueEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+        }
+
+        if (!queue.tracks[0]) {
+            const noEmbed = new MessageEmbed()
+                .setColor('#679ad8')
+                .setDescription(`\`\`\`Тоглуулах жагсаалтанд дуу алга байна.\`\`\``)
+            return message.channel.send({ embeds: [noEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+        }
+
+        const tracks = queue.tracks.map((track, i) => `${i + 1}`)
+
+        await queue.clear(tracks)
+
+        const clearEmbed = new MessageEmbed()
+            .setColor('#679ad8')
+            .setDescription(`\`\`\`Тоглуулах жагсаалтаас дууг хаслаа.\`\`\``)
+        message.channel.send({ embeds: [clearEmbed] })
     }
-
-    if (!message.member.permissions.has("MANAGE_MESSAGES")) return;
-    if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return;
-
-    if (!args[0])
-      return message
-        .reply({
-          embed: {
-            color: "#679ad8",
-            description: `\`\`\`${prefix}clear [Мөр Мессежийн Хэмжээ]\`\`\``,
-            footer: {
-              text: "© 2022. 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 60000 }))
-        .then(message.delete({ timeout: 60000 }));
-
-    if (isNaN(args[0])) return;
-
-    if (args[0] < 1) return;
-
-    await message.channel.messages
-      .fetch({ limit: args[1] })
-      .then((messages) => {
-        message.channel.bulkDelete(messages);
-        message
-          .reply({
-            embed: {
-              color: "#679ad8",
-              description: `\`\`\`${
-                messages.size - 1
-              } мөр мессеж амжилттай усгадлаа.\`\`\``,
-              footer: {
-                text: "© 2022 14K",
-              },
-            },
-          })
-          .then((m) => m.delete({ timeout: 15000 }));
-      });
-  },
-};
+}

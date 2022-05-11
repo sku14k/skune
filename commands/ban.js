@@ -1,98 +1,118 @@
-const Discord = require("discord.js");
-const db = require("quick.db");
+const { MessageEmbed } = require('discord.js')
+const db = require('quick.db')
 
 module.exports = {
-  name: "ban",
-  async execute(message, args) {
-    let prefix;
-    let prefixes = await db.fetch(`prefix_${message.guild.id}`);
+  name: 'ban',
+  async execute(client, message, args) {
+    let prefix = await db.fetch(`prefix_${message.guild.id}`)
 
-    if (prefixes == null) {
-      prefix = "skune";
+    if (prefix == null) {
+      prefix = 'skune'
     } else {
-      prefix = prefixes;
+      prefix = prefix
     }
 
-    if (!message.member.hasPermission("BAN_MEMBERS")) return;
-    if (!message.guild.me.hasPermission("BAN_MEMBERS")) return;
+    const mentionedMember = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+    let reason = args.slice(1).join(' ')
+    var date = `${message.createdAt.getFullYear()} оны ${message.createdAt.getMonth() + 1}р сарын ${message.createdAt.getDate()}нд ${message.createdAt.getHours()} цаг ${message.createdAt.getMinutes()} минутанд`
 
-    let reason = args.slice(1).join(" ");
-    const mentionedMember =
-      message.mentions.members.first() ||
-      message.guild.members.cache.get(args[0]);
+    if (!message.member.permissions.has('BAN_MEMBERS')) {
+      const banError = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Танд ban командыг ашиглах permission байхгүй байна.\`\`\``)
+      return message.channel.send({ embeds: [banError] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    } else if (!message.guild.me.permissions.has('BAN_MEMBERS')) {
+      const permsEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Надад ban командыг ажиллуулах permission байхгүй байна.\`\`\``)
+      return message.channel.send({ embeds: [permsEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    }
+    if (!args[0]) {
+      const helpEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`${prefix}ban [@Хэрэглэгч] [Шалтгаан]\`\`\``)
+      return message.channel.send({ embeds: [helpEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 60000) })
+    }
+    if (!mentionedMember) {
+      const userEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Хэрэглэгч серверт байхгүй эсвэл та дурдсангүй.\`\`\``)
+      return message.channel.send({ embeds: [userEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    }
 
-    if (!reason) reason = "Шалтгаангүй.";
+    if (mentionedMember.id === message.author.id) {
+      const cantEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Та өөрийгөө ban хийх боломжгүй.\`\`\``)
+      return message.channel.send({ embeds: [cantEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    }
 
-    if (!args[0])
-      return message
-        .reply({
-          embed: {
-            color: "#679ad8",
-            description: `\`\`\`${prefix}ban [@Хэрэглэгч] [Шалтгаан]\`\`\``,
-            footer: {
-              text: "© 2022 14K",
+    if (!reason) reason = 'Шалтгаангүй'
+
+    const mentionedPosition = mentionedMember.roles.highest.position
+    const memberPosition = message.member.roles.highest.position
+    const botPosition = message.guild.me.roles.highest.position
+
+    if (mentionedMember.id === message.client.user.id) {
+      const aEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Намайг ban хийх боломжгүй.\`\`\``)
+      return message.channel.send({ embeds: [aEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    } else {
+      if (memberPosition <= mentionedPosition) {
+        const banErr = new MessageEmbed()
+          .setColor('#679ad8')
+          .setDescription(`\`\`\`Та өөрөөсөө өндөр болон адилхан roleтэй хэрэглэгчийг ban хийх боломжгүй.\`\`\``)
+        return message.channel.send({ embeds: [banErr] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+      } else if (botPosition <= mentionedPosition) {
+        const banEr = new MessageEmbed()
+          .setColor('#679ad8')
+          .setDescription(`\`\`\`Хэрэглэгчийн role өндөр тул ban хийх боломжгүй.\`\`\``)
+        return message.channel.send({ embeds: [banEr] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+      }
+    }
+
+    try {
+      const { guild } = message
+      const owner = await guild.fetchOwner()
+
+      if (mentionedMember.id === owner.id) {
+        const ownerEmbed = new MessageEmbed()
+          .setColor('#679ad8')
+          .setDescription(`\`\`\`Сервер эзэмшигчийг ban хийх боломжгүй.\`\`\``)
+        return message.channel.send({ embeds: [ownerEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+      } else {
+
+        const reasonDm = new MessageEmbed()
+          .setColor('#679ad8')
+          .setDescription(`\`\`\`Та ${message.guild.name} серверээс banдууллаа.\`\`\``)
+          .addFields(
+            {
+              name: 'Ban хийсэн',
+              value: `\`\`\`${message.author.tag}\`\`\``
             },
-          },
+            {
+              name: 'Шалтгаан',
+              value: `\`\`\`${reason}\`\`\``
+            },
+            {
+              name: 'Хэзээ',
+              value: `\`\`\`${date}\`\`\``
+            }
+          )
+        await mentionedMember.send({ embeds: [reasonDm] })
+        await mentionedMember.ban({ reason: reason }).then(() => {
+          const banSuccess = new MessageEmbed()
+            .setColor('#679ad8')
+            .setDescription(`\`\`\`${mentionedMember.user.tag} хэрэглэгчийг banдлаа.\`\`\``)
+          message.channel.send({ embeds: [banSuccess] })
         })
-        .then((m) => m.delete({ timeout: 60000 }))
-        .then(message.delete({ timeout: 60000 }));
-
-    if (!mentionedMember)
-      return message
-        .reply({
-          embed: {
-            color: "#679ad8",
-            description: `\`\`\`Хэрэглэгч серверт байхгүй эсвэл та дурдсангүй.\`\`\``,
-            footer: {
-              text: "© 2022 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
-
-    if (!mentionedMember.bannable) return;
-
-    var date = `${message.createdAt.getFullYear()} оны ${
-      message.createdAt.getMonth() + 1
-    }-р сарын ${message.createdAt.getDate()}-нд ${message.createdAt.getHours()} цаг ${message.createdAt.getMinutes()} минутанд`;
-
-    const banEmbed = new Discord.MessageEmbed()
-      .setDescription(
-        `\`\`\`Танд ${message.guild.name} серверээс хориг тавьсан тул та серверлүү орж чадахгүй.\`\`\``
-      )
-      .addFields(
-        {
-          name: `Шалтгаан`,
-          value: `\`\`\`${reason}\`\`\``,
-        },
-        {
-          name: `Хэзээ`,
-          value: `\`\`\`${date}\`\`\``,
-        }
-      )
-      .setColor("#679ad8")
-      .setFooter("© 2022 14K");
-    await mentionedMember.send(banEmbed).catch((err) => console.log(err));
-    await mentionedMember
-      .ban({
-        days: 7,
-        reason: reason,
-      })
-      .catch((err) => console.log(err))
-      .then(() =>
-        message
-          .reply({
-            embed: {
-              color: "#679ad8",
-              description: `\`\`\`${mentionedMember.user.tag} хэрэглэгчд хориг тавьлаа.\`\`\``,
-              footer: {
-                text: "© 2022 14K",
-              },
-            },
-          })
-          .then((m) => m.delete({ timeout: 15000 }))
-          .then(message.delete({ timeout: 15000 }))
-      );
-  },
-};
+      }
+    } catch (error) {
+      const errorEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Хэрэглчийг banдах явцад алдаа гарлаа.\`\`\``)
+      message.channel.send({ embed: [errorEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    }
+  }
+}

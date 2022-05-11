@@ -1,127 +1,115 @@
-const Discord = require("discord.js");
-const client = new Discord.Client();
-const db = require("quick.db");
+const { MessageEmbed, Message, Client } = require('discord.js')
+const db = require('quick.db')
 
 module.exports = {
-  name: "kick",
-  async execute(message, args) {
-    let prefix;
-    let prefixes = await db.fetch(`prefix_${message.guild.id}`);
+  name: 'kick',
+  async execute(client, message, args) {
+    let prefix = await db.fetch(`prefix_${message.guild.id}`)
 
-    if (prefixes == null) {
-      prefix = "skune";
+    if (prefix == null) {
+      prefix = 'skune'
     } else {
-      prefix = prefixes;
+      prefix = prefix
     }
 
-    if (!message.member.hasPermission("KICK_MEMBERS")) return;
+    const mentionedMember = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+    let reason = args.slice(1).join(' ')
+    var date = `${message.createdAt.getFullYear()} оны ${message.createdAt.getMonth() + 1}р сарын ${message.createdAt.getDate()}нд ${message.createdAt.getHours()} цаг ${message.createdAt.getMinutes()} минутанд`
 
-    if (!message.guild.me.hasPermission("KICK_MEMBERS")) return;
-    // message
-    //   .reply({
-    //     embed: {
-    //       color: "#FF0000",
-    //       title: "Алдаа гарлаа :x:",
-    //       description: `\`\`\`Надад энэ коммандыг ашиглах эрх байгаагүй тул комманд ажиллаж чадсангүй.\`\`\``,
-    //       footer: {
-    //         text: "© 2021. 14K",
-    //       },
-    //     },
-    //   })
-    //   .then((m) => m.delete({ timeout: 15000 }))
-    //   .then(message.delete({ timeout: 15000 }));
+    if (!message.member.permissions.has('KICK_MEMBERS')) {
+      const kickError = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Танд kick командыг ашиглах permission байхгүй байна.\`\`\``)
+      return message.channel.send({ embeds: [kickError] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    } else if (!message.guild.me.permissions.has('KICK_MEMBERS')) {
+      const permsEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Надад kick командыг ажиллуулах permission байхгүй байна.\`\`\``)
+      return message.channel.send({ embeds: [permsEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    }
+    if (!args[0]) {
+      const helpEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`${prefix}kick [@Хэрэглэгч] [Шалтгаан]\`\`\``)
+      return message.channel.send({ embeds: [helpEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 60000) })
+    }
+    if (!mentionedMember) {
+      const userEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Хэрэглэгч серверт байхгүй эсвэл та дурдсангүй.\`\`\``)
+      return message.channel.send({ embeds: [userEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    }
+    if (mentionedMember.id === message.author.id) {
+      const cantEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Та өөрийгөө kick хийх боломжгүй.\`\`\``)
+      return message.channel.send({ embeds: [cantEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    }
+    const { guild } = message
+    const owner = await guild.fetchOwner()
 
-    let reason = args.slice(1).join(" ");
+    if (mentionedMember.id === owner.id) {
+      const ownerEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Сервер эзэмшигчийг kick хийх боломжгүй.\`\`\``)
+      return message.channel.send({ embeds: [ownerEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    }
 
-    var date = `${message.createdAt.getFullYear()} оны ${
-      message.createdAt.getMonth() + 1
-    }-р сарын ${message.createdAt.getDate()}-нд ${message.createdAt.getHours()} цаг ${message.createdAt.getMinutes()} минутанд`;
+    if (!reason) reason = 'Шалтгаангүй'
 
-    const mentionedMember =
-      message.mentions.members.first() ||
-      message.guild.members.cache.get(args[0]);
+    const mentionedPosition = mentionedMember.roles.highest.position
+    const memberPosition = message.member.roles.highest.position
+    const botPosition = message.guild.me.roles.highest.position
 
-    if (!reason) reason = "Шалтгаангүй.";
-    const kickEmbed = new Discord.MessageEmbed()
-      .setDescription(
-        `\`\`\`Та ${message.guild.name} серверээс хөөгдлөө.\`\`\``
-      )
-      .addFields(
-        {
-          name: `Шалтгаан`,
-          value: `\`\`\`${reason}\`\`\``,
-        },
-        {
-          name: `Хэзээ`,
-          value: `\`\`\`${date}\`\`\``,
-        }
-      )
-      .setColor("#679ad8")
-      .setFooter("© 2022 14K");
-
-    if (!args[0])
-      return message
-        .reply({
-          embed: {
-            color: "#679ad8",
-            description: `\`\`\`${prefix}kick [@Хэрэглэгч] [Шалтгаан]\`\`\``,
-            footer: {
-              text: "© 2022 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 60000 }))
-        .then(message.delete({ timeout: 60000 }));
-
-    if (!mentionedMember)
-      return message
-        .reply({
-          embed: {
-            color: "#679ad8",
-            description: `\`\`\`Хэрэглэгч серверт байхгүй эсвэл та дурдсангүй.\`\`\``,
-            footer: {
-              text: "© 2022 14K",
-            },
-          },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
-
-    try {
-      await mentionedMember.send(kickEmbed);
-    } catch (err) {
-      console.log(`Энэ хүнийг серверээс гаргахад алдаа гарлаа.`);
+    if (mentionedMember.id === message.client.user.id) {
+      const aEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Намайг kick хийх боломжгүй.\`\`\``)
+      return message.channel.send({ embeds: [aEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+    } else {
+      if (memberPosition <= mentionedPosition) {
+        const kickErr = new MessageEmbed()
+          .setColor('#679ad8')
+          .setDescription(`\`\`\`Та өөрөөсөө өндөр болон адилхан roleтэй хэрэглэгчийг kick хийх боломжгүй.\`\`\``)
+        return message.channel.send({ embeds: [kickErr] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+      } else if (botPosition <= mentionedPosition) {
+        const kickEr = new MessageEmbed()
+          .setColor('#679ad8')
+          .setDescription(`\`\`\`Хэрэглэгчийн role өндөр тул kick хийх боломжгүй.\`\`\``)
+        return message.channel.send({ embeds: [kickEr] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
+      }
     }
 
     try {
-      await mentionedMember.kick(reason);
-      message
-        .reply({
-          embed: {
-            color: "#679ad8",
-            description: `\`\`\`${mentionedMember.user.tag} хэрэглэгчийг серверээс гаргалаа.\`\`\``,
-            footer: {
-              text: "© 2022 14K",
-            },
+      const reasonDm = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Та ${message.guild.name} серверээс kickлүүллээ.\`\`\``)
+        .addFields(
+          {
+            name: 'Kick хийсэн',
+            value: `\`\`\`${message.author.tag}\`\`\``
           },
-        })
-        .then((m) => m.delete({ timeout: 15000 }))
-        .then(message.delete({ timeout: 15000 }));
-    } catch (err) {
-      console.log(err);
-      // message
-      //   .reply({
-      //     embed: {
-      //       color: "#FF0000",
-      //       title: "Алдаа гарлаа :x:",
-      //       description: `\`\`\`${mentionedMember.user.tag} гишүүнийг серверээс гаргах явцад алдаа гарлаа.\`\`\``,
-      //       footer: {
-      //         text: "© 2022 14K",
-      //       },
-      //     },
-      //   })
-      //   .then((m) => m.delete({ timeout: 15000 }))
-      //   .then(message.delete({ timeout: 15000 }));
+          {
+            name: 'Шалтгаан',
+            value: `\`\`\`${reason}\`\`\``
+          },
+          {
+            name: 'Хэзээ',
+            value: `\`\`\`${date}\`\`\``
+          }
+        )
+      await mentionedMember.send({ embeds: [reasonDm] })
+      await mentionedMember.kick({ reason: reason }).then(() => {
+        const kickSuccess = new MessageEmbed()
+          .setColor('#679ad8')
+          .setDescription(`\`\`\`${mentionedMember.user.tag} хэрэглэгчийг kickллээ.\`\`\``)
+        message.channel.send({ embeds: [kickSuccess] })
+      })
+    } catch (error) {
+      const errorEmbed = new MessageEmbed()
+        .setColor('#679ad8')
+        .setDescription(`\`\`\`Хэрэглчийг kickлэх явцад алдаа гарлаа.\`\`\``)
+      message.channel.send({ embed: [errorEmbed] }).then(m => { setTimeout(async () => { await m.delete(); await message.delete() }, 15000) })
     }
-  },
-};
+  }
+}

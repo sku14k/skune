@@ -1,27 +1,13 @@
-const Discord = require("discord.js");
+const { MessageEmbed } = require('discord.js')
 
 module.exports = {
-  name: "avatar",
-  execute(message, args) {
-    const embed = new Discord.MessageEmbed();
+  name: 'avatar',
+  execute(client, message, args) {
+    const Target = message.mentions.users.first() || message.author
 
-    if (!message.mentions.users.first()) {
-      embed.setImage(
-        message.author.displayAvatarURL({ dynamic: true, size: 512 })
-      );
-      embed.setColor("#679ad8");
-      embed.setFooter("© 2022 14K");
-      return message.channel
-        .send(embed)
-        .then(message.delete({ timeout: 8000 }));
-    } else {
-      const user = message.mentions.users.first();
-      embed.setImage(user.displayAvatarURL({ dynamic: true, size: 512 }));
-      embed.setColor("#679ad8");
-      embed.setFooter("© 2022 14K");
-      return message.channel
-        .send(embed)
-        .then(message.delete({ timeout: 8000 }));
-    }
-  },
-};
+    const avatarEmbed = new MessageEmbed()
+      .setColor('#679ad8')
+      .setImage(Target.displayAvatarURL({ dynamic: true, size: 256 }))
+    message.channel.send({ embeds: [avatarEmbed] })
+  }
+}
